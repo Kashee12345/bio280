@@ -99,6 +99,25 @@
 
   footer.foot{text-align:center;color:var(--faint);font-size:13px;margin-top:44px;padding-top:22px;border-top:1px solid var(--line);}
   footer.foot .lamp{font-size:22px;}
+
+  /* WHAT'S NEW */
+  .wnew{background:var(--card);border-bottom:1px solid var(--line);}
+  .wnew details>summary{list-style:none;cursor:pointer;max-width:800px;margin:0 auto;display:flex;align-items:center;gap:10px;padding:13px 20px;font-size:14px;font-weight:700;color:var(--maroon-dk);}
+  .wnew details>summary::-webkit-details-marker{display:none;}
+  .wnew .wn-ic{font-size:16px;flex:0 0 auto;}
+  .wnew .wn-latest{font-weight:500;color:var(--faint);font-size:12.5px;}
+  .wnew .wn-chev{margin-left:auto;color:var(--faint);font-size:15px;transition:transform .2s;}
+  .wnew details[open] .wn-chev{transform:rotate(90deg);}
+  .wnew details[open]>summary{border-bottom:1px solid var(--line);}
+  .wnew .wn-body{max-width:800px;margin:0 auto;padding:4px 20px 20px;}
+  .wnew .wn-intro{margin:8px 0 4px;font-size:12.5px;color:var(--faint);line-height:1.5;font-style:italic;}
+  .wnew .wn-item{display:flex;gap:14px;padding:11px 0;border-bottom:1px dashed var(--line);}
+  .wnew .wn-item:last-child{border-bottom:none;}
+  .wnew .wn-date{flex:0 0 auto;width:98px;font-size:11.5px;font-weight:700;color:var(--maroon);background:var(--maroon-lt);border-radius:8px;padding:5px 0;text-align:center;height:fit-content;}
+  .wnew .wn-txt h4{margin:0 0 2px;font-size:14px;font-weight:700;}
+  .wnew .wn-txt p{margin:0;font-size:13px;color:var(--muted);line-height:1.5;}
+  .wnew .wn-tag{font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold);padding:1px 6px;border-radius:9px;margin-left:7px;vertical-align:middle;}
+  @media(max-width:560px){.wnew .wn-item{flex-direction:column;gap:5px;}.wnew .wn-date{width:auto;align-self:flex-start;padding:4px 11px;}}
 </style>
 </head>
 <body>
@@ -110,6 +129,11 @@
     <span>New podcasts, books, flipbooks, and study guides are added as we go. If something is missing or marked "coming soon," it's on the way.</span>
   </div>
 </div></div>
+
+<div class="wnew"><details id="whatsnew">
+  <summary><span class="wn-ic">📢</span>What&rsquo;s New <span class="wn-latest" id="wnLatest"></span><span class="wn-chev">›</span></summary>
+  <div class="wn-body" id="wnBody"></div>
+</details></div>
 
 <header class="hero">
   <div class="crest">⚕️</div>
@@ -124,7 +148,11 @@
 
   <div class="sl">Study Tools</div>
   <div class="games">
-    <a class="game main" href="https://kashee12345.github.io/bio280-book/games/the-chase.html">
+    <a class="game main" href="exam-suite/index.html">
+      <div class="ico">🎓</div>
+      <div><h3>Exam Prep HQ <span class="mtag">New</span></h3><p>Timed simulator, ABG trainer, lab-signature and red-flag drills, and a cram sheet — for every exam.</p></div>
+    </a>
+    <a class="game" href="https://kashee12345.github.io/bio280-book/games/the-chase.html">
       <div class="ico">🏃</div>
       <div><h3>The Chase <span class="mtag">Main</span></h3><p>Outrun the Quiz-Bot across hundreds of NCLEX-style questions.</p></div>
     </a>
@@ -194,6 +222,11 @@
           <h4>PathoParty Questions <span class="where">Google Slides</span></h4>
           <p>The in-class review question sets. Run them again on your own, or with a study group, to pressure-test what you actually know before exam day.</p>
         </div></div>
+        <div class="tool"><div class="tico">🎓</div><div>
+          <h4>Exam Prep HQ <span class="where">in-hub</span></h4>
+          <p>Your exam-prep command centre, covering all six unit exams and the cumulative final. Each has a timed and scored <b>exam simulator</b> drawing on the 755-question course bank, an <b>ABG trainer</b> that generates a fresh blood gas every time, and rapid drills for <b>lab signatures</b>, easily-confused <b>look-alike pairs</b>, <b>act-now red flags</b>, and <b>mechanism chains</b> &mdash; plus a printable cram sheet. A readiness dashboard tracks your accuracy exam by exam and names the one to study first.</p>
+        </div></div>
+
         <div class="tool"><div class="tico">🫀</div><div>
           <h4>The Interactive Body <span class="where">in-hub</span></h4>
           <p>Ninety hands-on animated lessons — click, drag, and toggle to watch each mechanism unfold, plus live ABG and Punnett-square calculators.</p>
@@ -227,7 +260,8 @@
           <li>Work the <b>Study Guide</b> for anything on the checklist you're shaky on.</li>
           <li>Run the <b>PathoParty Questions</b> as a self-test, ideally with a study group.</li>
           <li>Re-drill the weakest week's <b>Flashcards</b>.</li>
-          <li>The night before, replay <b>The Chase</b> on those weeks.</li>
+          <li>Open <b>Exam Prep HQ</b>, run the simulator cold, and let the readiness dashboard name your weakest exam.</li>
+          <li>The night before, read that exam's <b>Cram Sheet</b> and replay <b>The Chase</b>.</li>
         </ol>
       </div>
     </div>
@@ -240,6 +274,23 @@
 </div>
 
 <script>
+
+/* ---------- WHAT'S NEW ----------
+   To add an update: copy one line to the TOP of this list. Newest first.
+   date is YYYY-MM-DD and is the only place the date is written. */
+const CHANGELOG=[
+ {date:"2026-08-01", title:"Exam Prep HQ — a full suite of exam tools",
+  body:"Seven tools covering all six unit exams and the cumulative final, drawing on 755 questions from the course bank: a timed and scored Exam Simulator, an ABG Trainer that generates a fresh blood gas every time, and drills for lab signatures, easily-confused look-alike pairs, act-now red flags, and mechanism chains, plus a printable cram sheet. A readiness dashboard tracks your accuracy exam by exam and names the one to study first."},
+ {date:"2026-08-01", title:"The course hub",
+  body:"Everything for BIO 280 gathered onto one page — podcasts, interactive books, flipbooks, and Quizlet decks for all fourteen weeks, plus a By Exam section with the KCR reviews, PathoParty question sets, and the six exam study guides."},
+ {date:"2026-08-01", title:"Exam study guides published",
+  body:"All six exam study guides are now on the site to read or download, each with a print-to-PDF button that expands every section first."},
+ {date:"2026-07-14", title:"The Pathophysiology Book",
+  body:"A full interactive pathophysiology textbook for the course — chapters with figures, comparison tables, clinical pearls, glossaries, quizzes, and the interactive labs embedded in context."},
+ {date:"2026-07-13", title:"The Interactive Body",
+  body:"Ninety hands-on animated pathophysiology lessons — click, drag, and toggle to watch each mechanism unfold, plus live ABG and Punnett-square calculators."}
+];
+
 const SPOT="https://open.spotify.com/episode/";
 const H5P="https://akashgarg.h5p.com/content/";
 const FLIP="https://online.fliphtml5.com/okqmf/";
@@ -336,14 +387,31 @@ EXAMS.forEach(e=>{
   rows+=row('📄','KCR Review', e.kcr?[link('Open',e.kcr,true)]:[]);
   rows+=row('🎉','PathoParty Questions', e.pp?[link('Open',e.pp,true)]:[]);
   rows+=row('📝','Study Guide', e.guide?[link('View',SG+e.guide+'.html',false),link('PDF',SG+e.guide+'.pdf',false)]:[]);
+  rows+=row('🎓','Exam Prep HQ', [link('Drill this exam','exam-suite/index.html?exam='+(e.fin?'7':e.n.replace('Exam ','')),false)]);
   if(!rows) rows='<div class="soon">Resources coming soon.</div>';
-  const count=(e.pod?1:0)+(e.kcr?1:0)+(e.pp?1:0)+(e.guide?1:0);
+  const count=(e.pod?1:0)+(e.kcr?1:0)+(e.pp?1:0)+(e.guide?1:0)+1;
   examsEl.insertAdjacentHTML('beforeend',
     '<details class="week ex"><summary><span class="wn">'+(e.fin?'Final':e.n.replace('Exam ','Exam '))+
     '</span><span class="wt">'+(e.fin?'Final Exam review':e.n+' review')+
     '</span><span class="wc">'+count+' item'+(count===1?'':'s')+'</span><span class="chev">›</span></summary>'+
     '<div class="wbody">'+rows+'</div></details>');
 });
+
+
+/* ---------- RENDER WHAT'S NEW ---------- */
+(function(){
+  var body=document.getElementById('wnBody'), latest=document.getElementById('wnLatest');
+  if(!body||!Array.isArray(CHANGELOG)) return;
+  function fmt(d){var p=d.split('-').map(Number);
+    return new Date(p[0],p[1]-1,p[2]).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
+  body.innerHTML='<p class="wn-intro">Newest first. Course resources are added week by week as the term runs.</p>'+
+    CHANGELOG.map(function(c,i){
+      return '<div class="wn-item"><div class="wn-date">'+fmt(c.date)+'</div>'+
+        '<div class="wn-txt"><h4>'+c.title+(i===0?'<span class="wn-tag">New</span>':'')+'</h4>'+
+        '<p>'+c.body+'</p></div></div>';
+    }).join('');
+  if(latest&&CHANGELOG.length) latest.textContent='· last updated '+fmt(CHANGELOG[0].date);
+})();
 
 function setAll(id,open){document.querySelectorAll('#'+id+' details.week').forEach(d=>d.open=open);}
 </script>
