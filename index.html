@@ -279,6 +279,8 @@
    To add an update: copy one line to the TOP of this list. Newest first.
    date is YYYY-MM-DD and is the only place the date is written. */
 const CHANGELOG=[
+ {date:"2026-08-01", title:"Final Exam Study Guide",
+  body:"A written review for the final covering all fourteen modules, with full deep dives on Modules 13 and 14 (the most heavily weighted) and a focused rapid review of Modules 1 through 12. Thirty topics, 102 practice questions with rationales, and a matching PDF."},
  {date:"2026-08-01", title:"Exam Prep HQ — a full suite of exam tools",
   body:"Seven tools covering all six unit exams and the cumulative final, drawing on 755 questions from the course bank: a timed and scored Exam Simulator, an ABG Trainer that generates a fresh blood gas every time, and drills for lab signatures, easily-confused look-alike pairs, act-now red flags, and mechanism chains, plus a printable cram sheet. A readiness dashboard tracks your accuracy exam by exam and names the one to study first."},
  {date:"2026-08-01", title:"The course hub",
@@ -348,13 +350,13 @@ const WEEKS=[
 
 /* ---------- EXAMS ---------- */
 const EXAMS=[
- {n:"Exam 1", kcr:GD+"1guUcnaZcY2mYgwf8hJXmlMtA21wUJy7d/preview", pp:GS+"1vSiVn8bu9qLktkRWw_wM36YZzIaS9QYh/preview", guide:"BIO280_Exam1_Study_Guide"},
- {n:"Exam 2", kcr:GD+"1YSierw9RHFrVLZ6wdfIer7TDerN4iKB1/preview", pp:GS+"1moc15GDSS8N0Q3mF2_dj4XAgBNWWsNgC/preview", guide:"BIO280_Exam2_Study_Guide"},
- {n:"Exam 3", kcr:GD+"1f59hHzQbvckNuSgE5NqIS6hYZcWTFCDU/preview", pp:GS+"1woA1PZvtzppA7RjP5TuSJ4LBp4Gwm3aH/preview", guide:"BIO280_Exam3_Study_Guide"},
- {n:"Exam 4", kcr:GD+"1No5Rxr46M0uqh9SDEBcMCgJUmX5dCHOI/preview", pp:GS+"1tFqyIDIn3Xez9yOJXZi3i5znez-2OxZI/preview", guide:"BIO280_Exam4_Study_Guide"},
- {n:"Exam 5", kcr:GD+"1R4q7x2SzIDzBCwrcu3yAWOFmk2hag1Yu/preview", pp:GS+"1eE04yksQ3SSGlw5tQ69l4f3nMnQotsuR/preview", guide:"BIO280_Exam5_Study_Guide"},
- {n:"Exam 6", kcr:GD+"1H_c6Rp4PnzCuYQCG5qLS8X8RRnYPQAaS/preview", pp:GS+"1oOUaQKI88v6IQc-dpi4ZeKCgWqXW-tvJ/preview", guide:"BIO280_Exam6_Study_Guide"},
- {n:"Final Exam", fin:true, kcr:GD+"1Tra-d0mAvCknKwfy7nxAz_rHBE01ucfa/preview", pp:null, guide:null,
+ {n:"Exam 1", mods:"Modules 1 & 2", kcr:GD+"1guUcnaZcY2mYgwf8hJXmlMtA21wUJy7d/preview", pp:GS+"1vSiVn8bu9qLktkRWw_wM36YZzIaS9QYh/preview", guide:"BIO280_Exam1_Study_Guide"},
+ {n:"Exam 2", mods:"Modules 3 & 4", kcr:GD+"1YSierw9RHFrVLZ6wdfIer7TDerN4iKB1/preview", pp:GS+"1moc15GDSS8N0Q3mF2_dj4XAgBNWWsNgC/preview", guide:"BIO280_Exam2_Study_Guide"},
+ {n:"Exam 3", mods:"Modules 5 & 6", kcr:GD+"1f59hHzQbvckNuSgE5NqIS6hYZcWTFCDU/preview", pp:GS+"1woA1PZvtzppA7RjP5TuSJ4LBp4Gwm3aH/preview", guide:"BIO280_Exam3_Study_Guide"},
+ {n:"Exam 4", mods:"Modules 7 & 8", kcr:GD+"1No5Rxr46M0uqh9SDEBcMCgJUmX5dCHOI/preview", pp:GS+"1tFqyIDIn3Xez9yOJXZi3i5znez-2OxZI/preview", guide:"BIO280_Exam4_Study_Guide"},
+ {n:"Exam 5", mods:"Modules 9 & 10", kcr:GD+"1R4q7x2SzIDzBCwrcu3yAWOFmk2hag1Yu/preview", pp:GS+"1eE04yksQ3SSGlw5tQ69l4f3nMnQotsuR/preview", guide:"BIO280_Exam5_Study_Guide"},
+ {n:"Exam 6", mods:"Modules 11 & 12", kcr:GD+"1H_c6Rp4PnzCuYQCG5qLS8X8RRnYPQAaS/preview", pp:GS+"1oOUaQKI88v6IQc-dpi4ZeKCgWqXW-tvJ/preview", guide:"BIO280_Exam6_Study_Guide"},
+ {n:"Final Exam", fin:true, mods:"All modules — weighted to 13 & 14", kcr:GD+"1Tra-d0mAvCknKwfy7nxAz_rHBE01ucfa/preview", pp:null, guide:"BIO280_Final_Exam_Study_Guide",
   pod:SPOT+"0TAsqpqRVeedLGqjbzygvq"}
 ];
 
@@ -392,7 +394,7 @@ EXAMS.forEach(e=>{
   const count=(e.pod?1:0)+(e.kcr?1:0)+(e.pp?1:0)+(e.guide?1:0)+1;
   examsEl.insertAdjacentHTML('beforeend',
     '<details class="week ex"><summary><span class="wn">'+(e.fin?'Final':e.n.replace('Exam ','Exam '))+
-    '</span><span class="wt">'+(e.fin?'Final Exam review':e.n+' review')+
+    '</span><span class="wt">'+(e.mods||(e.fin?'Final Exam review':e.n+' review'))+
     '</span><span class="wc">'+count+' item'+(count===1?'':'s')+'</span><span class="chev">›</span></summary>'+
     '<div class="wbody">'+rows+'</div></details>');
 });
