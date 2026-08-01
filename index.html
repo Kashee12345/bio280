@@ -3,181 +3,349 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#f7f2ea">
-<title>The Interactive Body — BIO 280 Pathophysiology · Joyce University</title>
-<meta name="description" content="A free, animated, interactive way to learn pathophysiology for BIO 280 — 86 hands-on lessons across every body system. A study resource for Joyce University students by Dr. Akash Garg.">
+<meta name="theme-color" content="#8a2f36">
+<title>BIO 280 · Pathophysiology — Joyce University</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{ --bg:#f6f1e8; --card:#fffdf8; --ink:#241f1b; --muted:#7a6f63; --line:#e6dccb;
-    --gold:#c99a2e; --maroon:#8a2f36; --disp:'Cinzel Decorative',serif; --sans:'Inter',system-ui,sans-serif; }
-  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-  body{background:radial-gradient(1200px 620px at 50% -120px,#fff6ea,#efe6d6);color:var(--ink);font-family:var(--sans);min-height:100vh;}
-  a{text-decoration:none;color:inherit;}
-  .topnav{position:sticky;top:0;z-index:60;background:rgba(255,250,240,.93);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:11px 22px;gap:12px;flex-wrap:wrap;}
-  .topnav .brand{font-family:var(--disp);font-weight:900;font-size:18px;color:var(--maroon);display:flex;align-items:center;gap:8px;}
-  .topnav nav{display:flex;gap:4px;flex-wrap:wrap;}
-  .topnav nav a{font-size:14px;font-weight:600;color:#5c5248;padding:7px 13px;border-radius:9px;transition:.12s;}
-  .topnav nav a:hover{background:#f4ecdd;color:var(--maroon);}
-  .topnav nav a.active{background:var(--maroon);color:#fff;}
-  .dd{position:relative;}
-  .ddbtn{font-family:var(--sans);font-size:14px;font-weight:600;color:#5c5248;padding:7px 13px;border-radius:9px;background:none;border:none;cursor:pointer;transition:.12s;}
-  .ddbtn:hover{background:#f4ecdd;color:#8a2f36;}
-  .ddbtn.active,.dd.open .ddbtn{background:#8a2f36;color:#fff;}
-  .ddpanel{position:absolute;top:calc(100% + 8px);right:0;width:252px;max-height:72vh;overflow-y:auto;background:#fff;border:1px solid #e6dccb;border-radius:12px;box-shadow:0 14px 34px rgba(90,60,30,.20);padding:6px;display:none;z-index:70;}
-  .dd.open .ddpanel{display:block;}
-  .ddpanel a{display:block;font-size:13px;font-weight:600;color:#4a4038;padding:8px 11px;border-radius:8px;}
-  .ddpanel a:hover{background:#f4ecdd;color:#8a2f36;}
-  .ddpanel a.ddhead{font-weight:800;color:#8a2f36;border-bottom:1px solid #e6dccb;margin-bottom:4px;}
+  :root{
+    --bg:#f6f1e8; --card:#fffdf8; --ink:#241f1b; --muted:#7a6f63; --faint:#9d9184; --line:#e6dccb;
+    --gold:#c99a2e; --gold-lt:#f7eeda; --maroon:#8a2f36; --maroon-dk:#5e1f24; --maroon-lt:#f7e9e9;
+    --shadow:0 1px 3px rgba(60,40,20,.06); --r:14px;
+    --disp:'Cinzel Decorative',serif; --sans:'Inter',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:800px;margin:0 auto;padding:0 18px 90px;}
 
-  .hero{max-width:1000px;margin:0 auto;padding:56px 20px 12px;text-align:center;}
-  .kicker{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700;}
-  .hero h1{font-family:var(--disp);font-weight:900;font-size:clamp(34px,7.5vw,68px);line-height:1.02;margin-top:10px;
-    background:linear-gradient(180deg,#8a2f36,#c0453f 55%,#8a2f36);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .hero .beat{display:inline-block;animation:beat 1.3s ease-in-out infinite;}
-  @keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.14)}30%{transform:scale(1)}45%{transform:scale(1.08)}}
-  .hero p.lead{max-width:660px;margin:16px auto 0;font-size:17px;line-height:1.6;color:#544a40;}
-  .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px;}
-  .btn{border-radius:12px;padding:13px 24px;font-weight:800;font-size:15px;transition:transform .14s,box-shadow .14s,filter .14s;}
-  .btn.primary{background:var(--maroon);color:#fff;box-shadow:0 8px 22px rgba(138,47,54,.24);}
-  .btn.ghost{background:#fff;color:var(--maroon);border:1.5px solid #e0c9b0;}
-  .btn:hover{transform:translateY(-2px);} .btn.primary:hover{filter:brightness(1.06);}
-  .byline{margin-top:18px;font-size:13.5px;color:var(--muted);}
-  .byline b{color:var(--maroon);}
+  /* NOTICE */
+  .notice{background:linear-gradient(180deg,#fbf3e2,#f7ecd8);border-bottom:1px solid #ecdcb8;}
+  .notice .ni{max-width:800px;margin:0 auto;padding:16px 20px;display:flex;gap:14px;align-items:flex-start;}
+  .notice .nx{font-size:26px;line-height:1;flex:0 0 auto;}
+  .notice .nt{color:#6d5518;}
+  .notice .nt strong{display:block;font-family:var(--disp);font-weight:700;font-size:18px;color:#57420f;margin-bottom:3px;}
+  .notice .nt span{font-size:14px;line-height:1.5;}
 
-  .stats{max-width:900px;margin:40px auto 0;padding:0 20px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
-  .stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 12px;text-align:center;box-shadow:0 6px 20px rgba(90,60,30,.05);}
-  .stat .n{font-family:var(--disp);font-weight:900;font-size:30px;color:var(--maroon);line-height:1;}
-  .stat .l{font-size:12.5px;color:var(--muted);margin-top:6px;font-weight:600;}
+  /* HEADER */
+  header.hero{text-align:center;padding:46px 20px 28px;}
+  header.hero .crest{font-size:32px;line-height:1;}
+  .kicker{font-size:11.5px;letter-spacing:3px;font-weight:700;color:var(--maroon);text-transform:uppercase;margin:12px 0 8px;}
+  header.hero h1{font-family:var(--disp);font-weight:700;font-size:clamp(27px,5.4vw,40px);margin:0 0 10px;color:var(--maroon-dk);}
+  header.hero p.sub{margin:0 auto;max-width:540px;font-size:15px;color:var(--muted);}
+  header.hero .by{margin-top:14px;font-size:13px;color:var(--faint);font-weight:600;}
+  .divline{height:1px;background:var(--line);margin:6px 0 24px;}
 
-  .section{max-width:1080px;margin:56px auto 0;padding:0 20px;}
-  .section h2{font-family:var(--disp);font-weight:700;font-size:26px;color:var(--maroon);text-align:center;}
-  .section .sub{text-align:center;color:#544a40;font-size:15px;margin-top:8px;max-width:640px;margin-left:auto;margin-right:auto;line-height:1.5;}
-  .feats{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:26px;}
-  .feat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 6px 20px rgba(90,60,30,.05);}
-  .feat .ic{font-size:26px;}
-  .feat h3{font-size:16.5px;font-weight:800;margin-top:10px;color:#2a231e;}
-  .feat p{font-size:13.7px;line-height:1.55;color:#544a40;margin-top:7px;}
+  .sl{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;color:var(--faint);margin:30px 4px 12px;display:flex;align-items:center;justify-content:space-between;}
+  .sl .tog{display:flex;gap:14px;}
+  .sl .tog button{background:none;border:none;font:inherit;font-size:11.5px;color:var(--maroon);cursor:pointer;padding:0;text-transform:none;font-weight:600;}
+  .sl .tog button:hover{text-decoration:underline;}
 
-  .paths{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px;}
-  .path{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 8px 24px rgba(90,60,30,.06);
-    border-top:4px solid var(--gold);transition:transform .15s,box-shadow .15s;}
-  .path:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(90,60,30,.13);}
-  .path .ic{font-size:30px;} .path h3{font-family:var(--disp);font-weight:700;font-size:20px;color:var(--maroon);margin-top:8px;}
-  .path p{font-size:14px;line-height:1.55;color:#544a40;margin-top:8px;}
-  .path .go{display:inline-block;margin-top:14px;color:var(--maroon);font-weight:800;font-size:14px;}
+  /* TOOL CARDS */
+  .games{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+  @media(max-width:680px){.games{grid-template-columns:1fr;}}
+  .game{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;box-shadow:var(--shadow);transition:border-color .15s,transform .15s;}
+  .game:hover{border-color:var(--maroon);transform:translateY(-2px);}
+  .game .ico{flex:0 0 auto;width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:24px;background:var(--maroon-lt);}
+  .game.main .ico{background:var(--gold-lt);}
+  .game h3{margin:0;font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .game .mtag{font-size:9.5px;letter-spacing:.5px;font-weight:800;color:var(--gold);border:1px solid var(--gold);padding:2px 6px;border-radius:10px;text-transform:uppercase;}
+  .game p{margin:2px 0 0;font-size:12.5px;color:var(--muted);}
 
-  .hl{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-top:24px;}
-  .hlc{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:14px 16px;box-shadow:0 5px 16px rgba(90,60,30,.05);transition:transform .14s;}
-  .hlc:hover{transform:translateY(-2px);}
-  .hlc .t{font-weight:800;font-size:14.5px;color:#2a231e;} .hlc .d{font-size:12.3px;color:#6a5f52;margin-top:3px;line-height:1.4;}
-  .hlc .tag{display:inline-block;margin-top:8px;font-size:11px;font-weight:700;color:#2f7d50;background:#e9f4ec;border-radius:20px;padding:2px 9px;}
+  /* WEEK ACCORDION */
+  #weeks,#exams{display:flex;flex-direction:column;gap:8px;}
+  details.week{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;}
+  details.week>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:15px 18px;}
+  details.week>summary::-webkit-details-marker{display:none;}
+  .wn{flex:0 0 auto;font-size:11px;font-weight:700;letter-spacing:.5px;color:var(--maroon);background:var(--maroon-lt);padding:5px 10px;border-radius:8px;min-width:78px;text-align:center;}
+  details.week.ex .wn{color:#8a6416;background:var(--gold-lt);}
+  .wt{flex:1 1 auto;font-size:15.5px;font-weight:600;}
+  .wc{flex:0 0 auto;font-size:12px;color:var(--faint);font-weight:500;}
+  .chev{flex:0 0 auto;color:var(--faint);font-size:16px;transition:transform .2s;}
+  details.week[open] .chev{transform:rotate(90deg);}
+  details.week[open]>summary{border-bottom:1px solid var(--line);}
+  .wbody{padding:6px 18px 16px;}
+  .rrow{display:flex;gap:12px;align-items:baseline;padding:8px 0;border-bottom:1px dashed var(--line);flex-wrap:wrap;}
+  .rrow:last-child{border-bottom:none;}
+  .rlab{flex:0 0 auto;width:158px;font-size:13px;font-weight:600;color:var(--muted);display:flex;gap:8px;align-items:center;}
+  .rlab .ic{font-size:15px;}
+  .ritems{flex:1 1 200px;font-size:13.5px;}
+  .ritems a{color:var(--maroon);font-weight:600;}
+  .ritems a:hover{text-decoration:underline;}
+  .ext{font-size:10px;opacity:.6;margin-left:2px;}
+  .sep{color:var(--faint);margin:0 7px;}
+  .soon{font-size:13px;color:var(--faint);padding:6px 0;}
+  @media(max-width:560px){ .rlab{width:auto;} }
 
-  footer{max-width:1080px;margin:60px auto 0;padding:24px 20px 50px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:13px;}
-  footer b{color:var(--maroon);font-family:var(--disp);letter-spacing:.5px;}
-  footer .note{max-width:640px;margin:0 auto 12px;font-size:12.5px;line-height:1.5;color:#7a6f63;}
-  @media (max-width:720px){ .stats{grid-template-columns:1fr 1fr;} .paths{grid-template-columns:1fr;} }
+  /* USE HUB */
+  details.usehub{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);margin-top:34px;overflow:hidden;}
+  details.usehub>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:11px;padding:15px 18px;font-weight:700;font-size:15px;}
+  details.usehub>summary::-webkit-details-marker{display:none;}
+  details.usehub .uh-hint{font-weight:400;color:var(--muted);font-size:13px;}
+  details.usehub[open]>summary{border-bottom:1px solid var(--line);}
+  .uh-body{padding:4px 18px 20px;}
+  .guide{display:grid;grid-template-columns:1fr;gap:10px;}
+  .guide .tool{display:flex;gap:13px;align-items:flex-start;background:#fffaf0;border:1px solid var(--line);border-radius:12px;padding:13px 15px;}
+  .guide .tool .tico{font-size:20px;flex:0 0 auto;}
+  .guide .tool h4{margin:0 0 3px;font-size:14.5px;font-weight:700;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+  .guide .tool .where{font-size:9.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--faint);font-weight:700;}
+  .guide .tool p{margin:0;font-size:13px;color:var(--muted);line-height:1.55;}
+  .gintro{font-size:13.5px;color:var(--muted);margin:6px 0 14px;}
+  .flow{background:var(--maroon-lt);border:1px solid #e8cfd0;border-radius:12px;padding:14px 18px;margin-top:16px;}
+  .flow h4{margin:0 0 8px;font-size:14.5px;color:var(--maroon-dk);}
+  .flow ol{margin:0;padding-left:20px;} .flow li{font-size:13.5px;margin:5px 0;}
+
+  footer.foot{text-align:center;color:var(--faint);font-size:13px;margin-top:44px;padding-top:22px;border-top:1px solid var(--line);}
+  footer.foot .lamp{font-size:22px;}
 </style>
 </head>
 <body>
-  <header class="topnav">
-    <a class="brand" href="index.html">🫀 The Interactive Body</a>
-    <nav>
-      <a href="index.html" class="active">Home</a>
-      <a href="lessons.html">Lessons</a>
-      <div class="dd">
-        <button class="ddbtn" aria-haspopup="true" aria-expanded="false">By Week ▾</button>
-        <div class="ddpanel">
-          <a class="ddhead" href="weeks.html">📅 All 14 weeks →</a>
-          <a href="weeks.html#wk1">Week 1 · Fluids &amp; ABGs</a>
-          <a href="weeks.html#wk2">Week 2 · Pathogens &amp; Immunity</a>
-          <a href="weeks.html#wk3">Week 3 · Cell Injury &amp; Cancer</a>
-          <a href="weeks.html#wk4">Week 4 · Sepsis, Pain &amp; Neuro</a>
-          <a href="weeks.html#wk5">Week 5 · Mental Health &amp; Neuro</a>
-          <a href="weeks.html#wk6">Week 6 · MSK, Skin &amp; Burns</a>
-          <a href="weeks.html#wk7">Week 7 · Genetics</a>
-          <a href="weeks.html#wk8">Week 8 · Endocrine</a>
-          <a href="weeks.html#wk9">Week 9 · Blood &amp; Cardiovascular I</a>
-          <a href="weeks.html#wk10">Week 10 · Cardiovascular II</a>
-          <a href="weeks.html#wk11">Week 11 · Renal &amp; Urinary</a>
-          <a href="weeks.html#wk12">Week 12 · Respiratory</a>
-          <a href="weeks.html#wk13">Week 13 · Gastrointestinal</a>
-          <a href="weeks.html#wk14">Week 14 · Liver &amp; Reproductive</a>
-        </div>
-      </div>
-      <a href="about.html">About</a>
-    </nav>
-  </header>
 
-  <section class="hero">
-    <div class="kicker">BIO 280 · Pathophysiology</div>
-    <h1>The Interactive <span class="beat">🫀</span> Body</h1>
-    <p class="lead">Pathophysiology you can actually <b>play with</b>. The whole course — every body system — as <b>86 hands-on, animated lessons</b>. Build a plaque, interpret a blood gas, solve a Punnett square, raise the intracranial pressure — and learn it in plain English.</p>
-    <div class="cta">
-      <a class="btn primary" href="lessons.html">Browse all 86 lessons →</a>
-      <a class="btn ghost" href="weeks.html">Explore by week</a>
-      <a class="btn ghost" href="https://kashee12345.github.io/bio280-book/" target="_blank" rel="noopener">📖 Read the book</a>
-    </div>
-    <div class="byline">A free study resource for <b>Joyce University</b> BIO 280 students · by <b>Dr. Akash Garg</b></div>
-  </section>
+<div class="notice"><div class="ni">
+  <div class="nx">🚧</div>
+  <div class="nt">
+    <strong>This hub grows all term long — thanks for your patience!</strong>
+    <span>New podcasts, books, flipbooks, and study guides are added as we go. If something is missing or marked "coming soon," it's on the way.</span>
+  </div>
+</div></div>
 
-  <div class="stats">
-    <div class="stat"><div class="n">86</div><div class="l">interactive lessons</div></div>
-    <div class="stat"><div class="n">16</div><div class="l">body systems</div></div>
-    <div class="stat"><div class="n">14</div><div class="l">weeks covered</div></div>
-    <div class="stat"><div class="n">100%</div><div class="l">free · no sign-up</div></div>
+<header class="hero">
+  <div class="crest">⚕️</div>
+  <div class="kicker">Joyce University · Nursing &amp; Health Sciences</div>
+  <h1>BIO 280 · Pathophysiology</h1>
+  <p class="sub">Every resource for the course in one place. Pick a week to open its podcast, interactive book, flipbook, and flashcards — or jump to an exam.</p>
+  <div class="by">Dr. Akash Garg</div>
+</header>
+
+<div class="wrap">
+  <div class="divline"></div>
+
+  <div class="sl">Study Tools</div>
+  <div class="games">
+    <a class="game main" href="https://kashee12345.github.io/bio280-book/games/the-chase.html">
+      <div class="ico">🏃</div>
+      <div><h3>The Chase <span class="mtag">Main</span></h3><p>Outrun the Quiz-Bot across hundreds of NCLEX-style questions.</p></div>
+    </a>
+    <a class="game" href="https://kashee12345.github.io/bio280-book/games/pathoquest.html">
+      <div class="ico">🗺️</div>
+      <div><h3>PathoQuest</h3><p>A pixel-art RPG — battle a disease boss in every body system.</p></div>
+    </a>
+    <a class="game" href="https://kashee12345.github.io/bio280-book/games/medical-mystery.html">
+      <div class="ico">🩺</div>
+      <div><h3>Medical Mystery</h3><p>Work a real case inside an EHR and prove the pathophysiology.</p></div>
+    </a>
+    <a class="game" href="https://kashee12345.github.io/bio280-book/">
+      <div class="ico">📖</div>
+      <div><h3>The Book</h3><p>An interactive pathophysiology book — chapters with figures, tables, and embedded labs.</p></div>
+    </a>
+    <a class="game" href="interactive-body.html">
+      <div class="ico">🫀</div>
+      <div><h3>The Interactive Body</h3><p>90 hands-on animated lessons plus ABG and Punnett calculators.</p></div>
+    </a>
+    <a class="game" href="lessons.html">
+      <div class="ico">📚</div>
+      <div><h3>Lesson Library</h3><p>Browse every interactive lesson by system and topic.</p></div>
+    </a>
   </div>
 
-  <section class="section">
-    <h2>Three ways in</h2>
-    <div class="sub">Jump straight to any topic, follow along with the week you're studying, or read the whole course as a book.</div>
-    <div class="paths">
-      <a class="path" href="lessons.html">
-        <div class="ic">📚</div><h3>The Lesson Library</h3>
-        <p>All 86 lessons, grouped into 16 body-system sections — from fluids &amp; acid-base to the heart, lungs, gut, brain, and more. Great for looking up one topic fast.</p>
-        <span class="go">Open the library →</span>
-      </a>
-      <a class="path" href="weeks.html">
-        <div class="ic">🗓️</div><h3>By Course Week</h3>
-        <p>The same lessons, mapped to BIO 280 Weeks 1–14. See exactly which tools go with this week's lecture and study right along with class.</p>
-        <span class="go">See the weekly plan →</span>
-      </a>
-      <a class="path" href="https://kashee12345.github.io/bio280-book/" target="_blank" rel="noopener">
-        <div class="ic">📖</div><h3>The Pathophysiology Book</h3>
-        <p>The whole course as a readable, illustrated <b>interactive book</b> — 13 chapters with figures, tables, clinical pearls, quizzes, and embedded labs. Read online or <b>save any chapter (or the whole book) as a PDF</b>.</p>
-        <span class="go">Open the book →</span>
-      </a>
-    </div>
-  </section>
+  <div class="sl">By Week
+    <span class="tog"><button onclick="setAll('weeks',true)">Expand all</button><button onclick="setAll('weeks',false)">Collapse all</button></span>
+  </div>
+  <div id="weeks"></div>
 
-  <section class="section">
-    <h2>Why it works</h2>
-    <div class="feats">
-      <div class="feat"><div class="ic">🎛️</div><h3>Interactive, not slides</h3><p>Every lesson is something you <b>do</b> — click, drag, and toggle to watch the pathophysiology unfold, instead of staring at a static image.</p></div>
-      <div class="feat"><div class="ic">💬</div><h3>Plain-English first</h3><p>Each topic starts with an everyday explanation and analogy, then layers in the clinical detail — so it clicks whether it's new or review.</p></div>
-      <div class="feat"><div class="ic">🧮</div><h3>Real calculators</h3><p>Throw any values at the <b>ABG Interpreter</b> and <b>Punnett Square</b> tools — they solve it step by step. Perfect for self-testing.</p></div>
-      <div class="feat"><div class="ic">📱</div><h3>Works everywhere</h3><p>Runs in any browser on a phone, tablet, or class projector. Nothing to install, no account, no ads.</p></div>
-    </div>
-  </section>
+  <div class="sl">By Exam
+    <span class="tog"><button onclick="setAll('exams',true)">Expand all</button><button onclick="setAll('exams',false)">Collapse all</button></span>
+  </div>
+  <div id="exams"></div>
 
-  <section class="section">
-    <h2>Start with a few favorites</h2>
-    <div class="sub">A taste of what's inside — tap any to try it.</div>
-    <div class="hl">
-      <a class="hlc" href="ABGInterpreter.html"><div class="t">ABG Interpreter</div><div class="d">Type a blood gas → get the acid-base diagnosis, step by step.</div><span class="tag">calculator</span></a>
-      <a class="hlc" href="PunnettSquare.html"><div class="t">Punnett Square</div><div class="d">Cross two parents → see the affected / carrier odds.</div><span class="tag">calculator</span></a>
-      <a class="hlc" href="CoronaryQuest3D.html"><div class="t">Coronary Artery Disease</div><div class="d">A 3D voyage inside an artery as plaque builds.</div><span class="tag">3D</span></a>
-      <a class="hlc" href="LungSounds.html"><div class="t">Lung Sounds</div><div class="d">Actually hear wheezes, crackles, and rhonchi.</div><span class="tag">audio</span></a>
-      <a class="hlc" href="Diabetes.html"><div class="t">Diabetes Mellitus</div><div class="d">Type 1 vs 2, plus DKA vs HHS side by side.</div><span class="tag">compare</span></a>
-      <a class="hlc" href="IntracranialPressure.html"><div class="t">Intracranial Pressure</div><div class="d">Drag the pressure up and watch Cushing's triad appear.</div><span class="tag">slider</span></a>
-    </div>
-  </section>
+  <details class="usehub">
+    <summary><span>📖</span> New here? How to use this hub<span class="uh-hint"> — what each tool is and a study routine</span><span class="chev">›</span></summary>
+    <div class="uh-body">
+      <div class="sl" style="margin-top:12px;">Guide to the Tools</div>
+      <p class="gintro">Every tool covers the same material a different way — mix and match to whatever helps it stick.</p>
+      <div class="guide">
+        <div class="tool"><div class="tico">🎧</div><div>
+          <h4>Podcasts <span class="where">on Spotify</span></h4>
+          <p>Short audio episodes that talk through each week's big ideas. Put one on in the car or at the gym — ideal for absorbing material hands-free and for a refresher right before an exam.</p>
+        </div></div>
+        <div class="tool"><div class="tico">📚</div><div>
+          <h4>Interactive Books <span class="where">on H5P</span></h4>
+          <p>More than reading — questions, clickable images, and activities built in, checking your understanding as you go. Move at your own pace and redo any section.</p>
+        </div></div>
+        <div class="tool"><div class="tico">🎨</div><div>
+          <h4>Flipbooks <span class="where">illustrated</span></h4>
+          <p>Page-turning illustrated workbooks that turn dense pathophysiology into clear pictures and step-by-step diagrams. Best if you learn by <em>seeing</em> a process laid out.</p>
+        </div></div>
+        <div class="tool"><div class="tico">🃏</div><div>
+          <h4>Flashcards <span class="where">on Quizlet</span></h4>
+          <p>A deck for every week, embedded right in the page. Fastest way to drill terms and mechanisms — use Learn and Test modes on Quizlet for spaced repetition.</p>
+        </div></div>
+        <div class="tool"><div class="tico">📝</div><div>
+          <h4>Exam Study Guides <span class="where">view &amp; PDF</span></h4>
+          <p>A complete review for each exam — concepts organised with mechanisms, why-it-matters notes, exam tips, and practice questions. Read in your browser or download the PDF.</p>
+        </div></div>
+        <div class="tool"><div class="tico">📄</div><div>
+          <h4>KCR Exam Reviews <span class="where">Google Docs</span></h4>
+          <p>Key Concept Review documents for each exam — the concise list of what you are responsible for. Use them as your checklist when you think you're finished studying.</p>
+        </div></div>
+        <div class="tool"><div class="tico">🎉</div><div>
+          <h4>PathoParty Questions <span class="where">Google Slides</span></h4>
+          <p>The in-class review question sets. Run them again on your own, or with a study group, to pressure-test what you actually know before exam day.</p>
+        </div></div>
+        <div class="tool"><div class="tico">🫀</div><div>
+          <h4>The Interactive Body <span class="where">in-hub</span></h4>
+          <p>Ninety hands-on animated lessons — click, drag, and toggle to watch each mechanism unfold, plus live ABG and Punnett-square calculators.</p>
+        </div></div>
+        <div class="tool"><div class="tico">📖</div><div>
+          <h4>The Book <span class="where">separate site</span></h4>
+          <p>A full interactive pathophysiology textbook for this course, with figures, comparison tables, clinical pearls, glossaries, quizzes, and the interactive labs embedded in context.</p>
+        </div></div>
+        <div class="tool"><div class="tico">🎮</div><div>
+          <h4>The Games <span class="where">in-hub</span></h4>
+          <p><b>The Chase</b> is a quiz-show race; <b>PathoQuest</b> is an RPG where each body system is a boss; <b>Medical Mystery</b> puts you in an EHR to diagnose a real case. All three teach with full rationales.</p>
+        </div></div>
+      </div>
 
-  <footer>
-    <p class="note">An independent study resource created for Joyce University BIO 280 students — not an official university publication. Free to use and share.</p>
-    Built for nursing &amp; health-science students by <b>Dr. Akash Garg</b>.<br>
-    The Interactive Body · Pathophysiology, playable
+      <div class="flow">
+        <h4>📈 A simple way to study each week</h4>
+        <ol>
+          <li>Meet the concepts with the <b>Interactive Book</b>.</li>
+          <li>Hear them explained another way with the <b>Podcast</b>.</li>
+          <li>See the visuals in the <b>Flipbook</b>.</li>
+          <li>Watch the mechanism move in <b>The Interactive Body</b>.</li>
+          <li>Drill the terms with the week's <b>Flashcards</b>.</li>
+          <li>Lock it in by playing <b>The Chase</b> and <b>PathoQuest</b>.</li>
+        </ol>
+      </div>
+
+      <div class="flow">
+        <h4>🎓 When an exam is coming</h4>
+        <ol>
+          <li>Open the exam below and read the <b>KCR Review</b> — that's your checklist.</li>
+          <li>Work the <b>Study Guide</b> for anything on the checklist you're shaky on.</li>
+          <li>Run the <b>PathoParty Questions</b> as a self-test, ideally with a study group.</li>
+          <li>Re-drill the weakest week's <b>Flashcards</b>.</li>
+          <li>The night before, replay <b>The Chase</b> on those weeks.</li>
+        </ol>
+      </div>
+    </div>
+  </details>
+
+  <footer class="foot">
+    <div class="lamp">⚕️</div>
+    <p>BIO 280 · Pathophysiology — Joyce University · Dr. Akash Garg</p>
   </footer>
-<script>(function(){var d=document.querySelector('.dd');if(!d)return;var b=d.querySelector('.ddbtn');b.addEventListener('click',function(e){e.stopPropagation();d.classList.toggle('open');b.setAttribute('aria-expanded',d.classList.contains('open'));});d.querySelector('.ddpanel').addEventListener('click',function(e){e.stopPropagation();});document.addEventListener('click',function(){d.classList.remove('open');b.setAttribute('aria-expanded','false');});})();</script>
+</div>
+
+<script>
+const SPOT="https://open.spotify.com/episode/";
+const H5P="https://akashgarg.h5p.com/content/";
+const FLIP="https://online.fliphtml5.com/okqmf/";
+const QZ="https://quizlet.com/";
+const GD="https://docs.google.com/document/d/";
+const GS="https://docs.google.com/presentation/d/";
+const SG="study-guides/";
+
+/* ---------- WEEKS ---------- */
+const WEEKS=[
+ {n:"1",topic:"Acids & Bases · Fluids & Electrolytes",
+  pod:SPOT+"0V3hCI1H6rsZIj2cgz7kyq", book:H5P+"1292683032259962308", flip:FLIP+"rjlz/",
+  cards:[["Acids and Bases",QZ+"722988532/bio280-week-1-acids-and-bases-flash-cards/"],
+         ["Fluids and Electrolytes",QZ+"720565172/bio280-week-1-fluids-and-electrolytes-flash-cards/"]]},
+ {n:"2",topic:"Pathogens & Immunity",
+  pod:SPOT+"2icFITlZCwRHXXNQrmwJui", book:H5P+"1292689058699295798", flip:FLIP+"vcoy/",
+  cards:[["Pathogens and Immunity",QZ+"805825565/bio280-week-2-pathogens-and-immunity-flash-cards/"]]},
+ {n:"3",topic:"Cancer & Cellular Injury",
+  pod:SPOT+"2pqgdVN7FZ4AeT7DbfhMJm", book:H5P+"1292696669146022408", flip:FLIP+"bcpy/",
+  cards:[["Cancer and Cellular Injury",QZ+"809022564/bio280-week-3-cancer-and-cellular-injury-flash-cards/"]]},
+ {n:"4",topic:"Inflammation & Inflammatory Disorders",
+  pod:SPOT+"1QWFSlNvY1qKvyOqJ8XHkp", book:H5P+"1292702544320622858", flip:FLIP+"ssxt/",
+  cards:[["Inflammation and Inflammatory Disorders",QZ+"809028635/bio280-week-4-inflammation-and-inflammatory-disorders-flash-cards/"]]},
+ {n:"5",topic:"Neurology & Mental Health",
+  pod:SPOT+"3N9aMtlsEzK0NYn3abBOn9", book:H5P+"1292703778300112988", flip:FLIP+"huzk/",
+  cards:[["Neurology and Mental Health",QZ+"809025253/bio280-week-5-neurology-and-mental-health-flash-cards/"]]},
+ {n:"6",topic:"Musculoskeletal & Skin Disorders",
+  pod:SPOT+"5mxQig36XmmnL91eAXdkQY", book:H5P+"1292703777475130408", flip:null,
+  cards:[["MSK and Skin Disorders",QZ+"810555283/bio280-week-6-msk-and-skin-disorders-flash-cards/"]]},
+ {n:"7",topic:"Genetics",
+  pod:SPOT+"1dcafwdFiXe49gpl2487sg", book:H5P+"1292616155539606148", flip:null,
+  cards:[["Genetics",QZ+"810558931/bio280-week-7-genetics-flash-cards/"]]},
+ {n:"8",topic:"Endocrine",
+  pod:SPOT+"3aHbGUXHXRE4RFRUiRJ6R3", book:H5P+"1292621308910533948", flip:null,
+  cards:[["Endocrine",QZ+"810571020/bio280-week-8-endocrine-flash-cards/"]]},
+ {n:"9",topic:"Blood Disorders & Cardiovascular I",
+  pod:SPOT+"66PJ8v1bFbBHjxkI04L6gR", book:H5P+"1292632741092578738", flip:null,
+  cards:[["Blood Disorders and Cardiovascular I",QZ+"809328682/bio280-week-9-blood-disorders-and-cardiovascular-part-1-flash-cards/"]]},
+ {n:"10",topic:"Cardiovascular II",
+  pod:SPOT+"5vyRcEvbau5kgIpKsGpCv8", book:H5P+"1292632745115699798", flip:null,
+  cards:[["Cardiovascular II",QZ+"809330515/bio280-week-10-cardiovascular-part-ii-flash-cards/"]]},
+ {n:"11",topic:"Renal Disorders",
+  pod:SPOT+"41pURpzXYOUniMvxcYloLD", book:H5P+"1292640299908852978", flip:null,
+  cards:[["Renal Disorders",QZ+"810563662/bio280-week-11-renal-disorders-flash-cards/"]]},
+ {n:"12",topic:"Respiratory",
+  pod:SPOT+"1M45qLMvqdICWrfcl8wocZ", book:H5P+"1292646402952640518", flip:null,
+  cards:[["Respiratory",QZ+"809361075/bio280-week-12-respiratory-flash-cards/"]]},
+ {n:"13",topic:"Gastrointestinal",
+  pod:null, book:H5P+"1292654149908766098", bookNote:"Weeks 13 & 14", flip:null,
+  cards:[["GI",QZ+"809366329/bio280-week-13-gi-flash-cards/"]]},
+ {n:"14",topic:"Liver & Biliary System",
+  pod:null, book:H5P+"1292654149908766098", bookNote:"Weeks 13 & 14", flip:null,
+  cards:[["Liver and Biliary System",QZ+"747042772/bio280-week-14-liver-and-biliary-system-flash-cards/"]]}
+];
+
+/* ---------- EXAMS ---------- */
+const EXAMS=[
+ {n:"Exam 1", kcr:GD+"1guUcnaZcY2mYgwf8hJXmlMtA21wUJy7d/preview", pp:GS+"1vSiVn8bu9qLktkRWw_wM36YZzIaS9QYh/preview", guide:"BIO280_Exam1_Study_Guide"},
+ {n:"Exam 2", kcr:GD+"1YSierw9RHFrVLZ6wdfIer7TDerN4iKB1/preview", pp:GS+"1moc15GDSS8N0Q3mF2_dj4XAgBNWWsNgC/preview", guide:"BIO280_Exam2_Study_Guide"},
+ {n:"Exam 3", kcr:GD+"1f59hHzQbvckNuSgE5NqIS6hYZcWTFCDU/preview", pp:GS+"1woA1PZvtzppA7RjP5TuSJ4LBp4Gwm3aH/preview", guide:"BIO280_Exam3_Study_Guide"},
+ {n:"Exam 4", kcr:GD+"1No5Rxr46M0uqh9SDEBcMCgJUmX5dCHOI/preview", pp:GS+"1tFqyIDIn3Xez9yOJXZi3i5znez-2OxZI/preview", guide:"BIO280_Exam4_Study_Guide"},
+ {n:"Exam 5", kcr:GD+"1R4q7x2SzIDzBCwrcu3yAWOFmk2hag1Yu/preview", pp:GS+"1eE04yksQ3SSGlw5tQ69l4f3nMnQotsuR/preview", guide:"BIO280_Exam5_Study_Guide"},
+ {n:"Exam 6", kcr:GD+"1H_c6Rp4PnzCuYQCG5qLS8X8RRnYPQAaS/preview", pp:GS+"1oOUaQKI88v6IQc-dpi4ZeKCgWqXW-tvJ/preview", guide:"BIO280_Exam6_Study_Guide"},
+ {n:"Final Exam", fin:true, kcr:GD+"1Tra-d0mAvCknKwfy7nxAz_rHBE01ucfa/preview", pp:null, guide:null,
+  pod:SPOT+"0TAsqpqRVeedLGqjbzygvq"}
+];
+
+/* ---------- RENDER ---------- */
+function link(label,href,ext){return '<a href="'+href+'"'+(ext?' target="_blank" rel="noopener"':'')+'>'+label+(ext?'<span class="ext">↗</span>':'')+'</a>';}
+function row(ic,lab,links){
+  if(!links.length) return '';
+  return '<div class="rrow"><span class="rlab"><span class="ic">'+ic+'</span>'+lab+'</span><span class="ritems">'+links.join('<span class="sep">·</span>')+'</span></div>';
+}
+
+const weeksEl=document.getElementById('weeks');
+WEEKS.forEach(w=>{
+  let rows='';
+  rows+=row('🎧','Podcast', w.pod?[link('Listen',w.pod,true)]:[]);
+  rows+=row('📚','Interactive Book', w.book?[link(w.bookNote||'Open',w.book,true)]:[]);
+  rows+=row('🎨','Flipbook', w.flip?[link('Open',w.flip,true)]:[]);
+  rows+=row('🃏','Flashcards', (w.cards||[]).map(c=>link(c[0],c[1],true)));
+  if(!rows) rows='<div class="soon">Resources coming soon.</div>';
+  const count=(w.pod?1:0)+(w.book?1:0)+(w.flip?1:0)+(w.cards?w.cards.length:0);
+  weeksEl.insertAdjacentHTML('beforeend',
+    '<details class="week"><summary><span class="wn">Week '+w.n+'</span><span class="wt">'+w.topic+
+    '</span><span class="wc">'+count+' item'+(count===1?'':'s')+'</span><span class="chev">›</span></summary>'+
+    '<div class="wbody">'+rows+'</div></details>');
+});
+
+const examsEl=document.getElementById('exams');
+EXAMS.forEach(e=>{
+  let rows='';
+  rows+=row('🎧','Podcast', e.pod?[link('Listen',e.pod,true)]:[]);
+  rows+=row('📄','KCR Review', e.kcr?[link('Open',e.kcr,true)]:[]);
+  rows+=row('🎉','PathoParty Questions', e.pp?[link('Open',e.pp,true)]:[]);
+  rows+=row('📝','Study Guide', e.guide?[link('View',SG+e.guide+'.html',false),link('PDF',SG+e.guide+'.pdf',false)]:[]);
+  if(!rows) rows='<div class="soon">Resources coming soon.</div>';
+  const count=(e.pod?1:0)+(e.kcr?1:0)+(e.pp?1:0)+(e.guide?1:0);
+  examsEl.insertAdjacentHTML('beforeend',
+    '<details class="week ex"><summary><span class="wn">'+(e.fin?'Final':e.n.replace('Exam ','Exam '))+
+    '</span><span class="wt">'+(e.fin?'Final Exam review':e.n+' review')+
+    '</span><span class="wc">'+count+' item'+(count===1?'':'s')+'</span><span class="chev">›</span></summary>'+
+    '<div class="wbody">'+rows+'</div></details>');
+});
+
+function setAll(id,open){document.querySelectorAll('#'+id+' details.week').forEach(d=>d.open=open);}
+</script>
 </body>
 </html>
