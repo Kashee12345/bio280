@@ -31,15 +31,19 @@
        Tool stats are namespaced per exam so one exam's run cannot skew another's. */
     hit: function (tool, week, correct) {
       tool = examKey + ":" + tool;
+      /* `correct` may be a boolean OR a 0..1 score. Select-all-that-apply items are
+         graded with partial credit, so the running tallies carry fractions. */
+      var pts = (typeof correct === "number") ? correct : (correct ? 1 : 0);
+      if (pts < 0) pts = 0; if (pts > 1) pts = 1;
       var d = load();
       if (week != null) {
         var k = String(week);
         var wk = d.weeks[k] || { c: 0, n: 0 };
-        wk.n += 1; if (correct) wk.c += 1;
+        wk.n += 1; wk.c += pts;
         d.weeks[k] = wk;
       }
       var t = d.tools[tool] || { c: 0, n: 0, runs: 0, best: null };
-      t.n += 1; if (correct) t.c += 1;
+      t.n += 1; t.c += pts;
       d.tools[tool] = t;
       save(d);
     },
@@ -79,16 +83,50 @@
     });
   }
 
-  /* shuffle a question's options while keeping track of the right answer */
+  /* ---------- question shape ----------
+     A question with an `m` array is SELECT ALL THAT APPLY: `m` lists every correct
+     option index. Anything without `m` is ordinary single-answer, keyed by `c`. */
+  function isMulti(q) { return !!(q && q.m && q.m.length); }
+
+  /* shuffle a question's options while keeping track of the right answer(s) */
   function shuffleQ(q) {
     var idx = q.a.map(function (_, i) { return i; });
     idx = shuffle(idx);
-    return {
+    var o = {
       q: q.q,
       a: idx.map(function (i) { return q.a[i]; }),
       c: idx.indexOf(q.c),
       t: q.t, fb: q.fb, d: q.d, week: q.week
     };
+    /* remap every correct index through the same shuffle */
+    if (isMulti(q)) {
+      o.m = q.m.map(function (i) { return idx.indexOf(i); })
+               .sort(function (a, b) { return a - b; });
+    }
+    return o;
+  }
+
+  /* ---------- grading ----------
+     Single-answer: 1 point or 0.
+     Select-all-that-apply: PARTIAL CREDIT. Each correct box ticked earns a share of the
+     point; each wrong box ticked gives one back. Ticking everything therefore scores
+     poorly, and leaving it blank scores zero — you cannot coast on a SATA item.
+         points = (correct ticked - incorrect ticked) / (number of correct options)
+     clamped to 0..1.                                                                  */
+  function gradeQ(q, ans) {
+    if (isMulti(q)) {
+      var sel = ans || [], hit = 0, miss = 0;
+      for (var i = 0; i < sel.length; i++) {
+        if (q.m.indexOf(sel[i]) >= 0) hit++; else miss++;
+      }
+      var pts = (hit - miss) / q.m.length;
+      if (pts < 0) pts = 0;
+      return { pts: pts, full: (hit === q.m.length && miss === 0), multi: true,
+               hit: hit, miss: miss, need: q.m.length, answered: sel.length > 0 };
+    }
+    var ok = (ans !== null && ans !== undefined && ans === q.c);
+    return { pts: ok ? 1 : 0, full: ok, multi: false,
+             answered: (ans !== null && ans !== undefined) };
   }
 
   /* flatten FINAL_BANK into one array, tagging each question with its week */
@@ -98,6 +136,7 @@
     Object.keys(w.FINAL_BANK).forEach(function (k) {
       w.FINAL_BANK[k].questions.forEach(function (q) {
         var o = {}; for (var p in q) o[p] = q[p];
+        if (q.m) o.m = q.m.slice();
         o.week = k;
         out.push(o);
       });
@@ -191,6 +230,7 @@
 
   w.FinalSuite = {
     Progress: Progress, shuffle: shuffle, esc: esc, shuffleQ: shuffleQ,
+    isMulti: isMulti, gradeQ: gradeQ,
     bankAll: bankAll, weekTitle: weekTitle, weekShort: weekShort, weekScope: weekScope,
     topbar: topbar, ALL_KEYS: ALL_KEYS,
     exam: examKey, EXAM: EXAM, loadData: loadData, span: EXAM.span,

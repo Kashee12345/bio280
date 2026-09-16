@@ -28,6 +28,22 @@
   .rev .ra.no{color:var(--bad);font-weight:600;}
   .rev .rfb{font-size:13.5px;color:var(--muted);margin-top:8px;line-height:1.6;}
   .timer{font-variant-numeric:tabular-nums;}
+
+  /* --- select all that apply --- */
+  .sata{display:inline-flex;align-items:center;gap:6px;background:var(--gold-lt);color:#8a6416;
+        border:1px solid var(--gold);border-radius:20px;padding:3px 11px;font-size:11.5px;
+        font-weight:700;letter-spacing:.02em;text-transform:uppercase;}
+  .satahint{font-size:12.5px;color:var(--muted);margin:2px 0 10px;}
+  .opts .opt .box{flex:0 0 auto;width:20px;height:20px;border:2px solid var(--line);border-radius:5px;
+        display:inline-flex;align-items:center;justify-content:center;font-size:13px;line-height:1;
+        color:transparent;background:#fff;transition:background .12s,border-color .12s,color .12s;}
+  .opts .opt.chosen .box{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .opt.multi{align-items:center;}
+  .revpts{font-size:12.5px;font-weight:700;border-radius:20px;padding:2px 10px;margin-left:8px;
+          background:var(--gold-lt);color:#8a6416;border:1px solid var(--gold);white-space:nowrap;}
+  .rev .ra.picked{font-weight:600;}
+  .rev .ra.shouldve{color:var(--bad);}
+  .rev .rhead{display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap;}
 </style>
 </head>
 <body>
@@ -61,10 +77,12 @@
       <div class="qhead" style="margin-top:13px;">
         <span class="qnum" id="qnum"></span>
         <span class="chip" id="qwk"></span>
+        <span class="sata hide" id="qsata">Select all that apply</span>
         <span class="spacer" style="flex:1 1 auto;"></span>
         <button class="btn ghost sm" id="flagBtn">Flag</button>
       </div>
       <div class="qtext" id="qtext"></div>
+      <div class="satahint" id="satahint"></div>
       <div class="opts" id="opts"></div>
       <div class="nav">
         <button class="btn ghost sm" id="prev">‹ Back</button>
@@ -144,7 +162,9 @@ window.FinalSuite.loadData(function(){
   /* ---------- exam ---------- */
   document.getElementById('go').addEventListener('click',function(){
     quiz=S.shuffle(pool).slice(0,Math.min(len,pool.length)).map(S.shuffleQ);
-    answers=quiz.map(function(){return null;}); flags=quiz.map(function(){return false;});
+    /* a select-all item holds an array of ticked indices; a single-answer item holds an index */
+    answers=quiz.map(function(q){return S.isMulti(q)?[]:null;});
+    flags=quiz.map(function(){return false;});
     cur=0; t0=Date.now();
     document.getElementById('setup').classList.add('hide');
     document.getElementById('exam').classList.remove('hide');
@@ -157,27 +177,53 @@ window.FinalSuite.loadData(function(){
     var el=document.getElementById('clock'); if(el) el.textContent=m+':'+(s<10?'0':'')+s;
   }
 
+  /* has this question been answered at all? */
+  function answered(i){
+    var a=answers[i];
+    return S.isMulti(quiz[i]) ? (a&&a.length>0) : a!==null;
+  }
+
   function draw(){
-    var q=quiz[cur];
+    var q=quiz[cur], multi=S.isMulti(q);
     document.getElementById('qnum').textContent='Question '+(cur+1)+' of '+quiz.length;
     document.getElementById('qwk').textContent='Week '+q.week;
     document.getElementById('qtext').textContent=q.q;
+    document.getElementById('qsata').classList[multi?'remove':'add']('hide');
+    document.getElementById('satahint').textContent = multi
+      ? 'Tick every option that applies \u2014 more than one is correct. Partial credit: each right tick earns '+
+        'credit and each wrong tick cancels one out, so ticking everything will not help you.'
+      : '';
     document.getElementById('flagBtn').textContent=flags[cur]?'Unflag':'Flag';
     document.getElementById('opts').innerHTML=q.a.map(function(a,i){
-      return '<button class="opt'+(answers[cur]===i?' chosen':'')+'" data-i="'+i+'">'+
-        '<span class="k">'+'ABCDE'[i]+'</span><span>'+S.esc(a)+'</span></button>';
+      var on = multi ? (answers[cur].indexOf(i)>=0) : (answers[cur]===i);
+      var mark = multi
+        ? '<span class="box" aria-hidden="true">\u2713</span>'
+        : '<span class="k">'+'ABCDE'[i]+'</span>';
+      return '<button type="button" class="opt'+(multi?' multi':'')+(on?' chosen':'')+'" data-i="'+i+'"'+
+        ' role="'+(multi?'checkbox':'radio')+'" aria-checked="'+(on?'true':'false')+'">'+
+        mark+'<span>'+S.esc(a)+'</span></button>';
     }).join('');
-    document.getElementById('pb').style.width=(answers.filter(function(a){return a!==null;}).length/quiz.length*100)+'%';
+    var done=0; for(var z=0;z<quiz.length;z++) if(answered(z)) done++;
+    document.getElementById('pb').style.width=(done/quiz.length*100)+'%';
     document.getElementById('prev').disabled=cur===0;
     document.getElementById('next').disabled=cur===quiz.length-1;
     document.getElementById('map').innerHTML=quiz.map(function(_,i){
-      return '<button class="gq'+(answers[i]!==null?' done':'')+(flags[i]?' flag':'')+(i===cur?' cur':'')+'" data-g="'+i+'">'+(i+1)+'</button>';
+      return '<button class="gq'+(answered(i)?' done':'')+(flags[i]?' flag':'')+(i===cur?' cur':'')+'" data-g="'+i+'">'+(i+1)+'</button>';
     }).join('');
   }
 
   document.getElementById('opts').addEventListener('click',function(e){
     var b=e.target.closest('[data-i]'); if(!b)return;
-    answers[cur]=+b.dataset.i;
+    var i=+b.dataset.i;
+    if(S.isMulti(quiz[cur])){
+      /* toggle this box and stay put \u2014 they are still choosing */
+      var sel=answers[cur], at=sel.indexOf(i);
+      if(at>=0) sel.splice(at,1); else sel.push(i);
+      sel.sort(function(x,y){return x-y;});
+      draw();
+      return;
+    }
+    answers[cur]=i;
     if(cur<quiz.length-1){ cur++; } draw();
   });
   document.getElementById('map').addEventListener('click',function(e){
@@ -189,45 +235,53 @@ window.FinalSuite.loadData(function(){
 
   /* ---------- submit ---------- */
   document.getElementById('submit').addEventListener('click',function(){
-    var un=answers.filter(function(a){return a===null;}).length;
+    var un=0; for(var z=0;z<quiz.length;z++) if(!answered(z)) un++;
     if(un && !confirm(un+' question'+(un===1?'':'s')+' still unanswered. Submit anyway?')) return;
     clearInterval(tick);
     grade();
   });
 
+  var marks=[];   /* one grade object per question, reused by the review render */
+
   function grade(){
-    var right=0, byWk={}, byTopic={};
-    quiz.forEach(function(q,i){
-      var ok=answers[i]===q.c;
-      if(ok) right++;
-      var w=byWk[q.week]||(byWk[q.week]={c:0,n:0}); w.n++; if(ok)w.c++;
+    var pts=0, full=0, byWk={}, byTopic={};
+    marks=quiz.map(function(q,i){
+      var g=S.gradeQ(q, answers[i]);
+      pts+=g.pts; if(g.full) full++;
+      var w=byWk[q.week]||(byWk[q.week]={c:0,n:0}); w.n++; w.c+=g.pts;
       var key=q.week+'|'+(q.t||'General');
-      var t=byTopic[key]||(byTopic[key]={c:0,n:0}); t.n++; if(ok)t.c++;
-      P.hit('simulator', q.week, ok);
+      var t=byTopic[key]||(byTopic[key]={c:0,n:0}); t.n++; t.c+=g.pts;
+      P.hit('simulator', q.week, g.pts);
+      return g;
     });
-    var pct=Math.round(right/quiz.length*100);
+    var pct=Math.round(pts/quiz.length*100);
     P.run('simulator', pct);
+    /* points can be fractional; show one decimal only when it actually is */
+    function nice(x){ return (Math.round(x*10)/10).toString(); }
 
     var mins=Math.max(1,Math.round((Date.now()-t0)/60000));
+    var nMulti=0; for(var z=0;z<quiz.length;z++) if(S.isMulti(quiz[z])) nMulti++;
     document.getElementById('scoreBig').textContent=pct+'%';
-    document.getElementById('scoreSub').textContent=right+' of '+quiz.length+' correct'+
+    document.getElementById('scoreSub').textContent=
+      nice(pts)+' of '+quiz.length+' points · '+full+' question'+(full===1?'':'s')+' fully correct'+
+      (nMulti?' (partial credit on the '+nMulti+' select-all item'+(nMulti===1?'':'s')+')':'')+
       (pct>=85?' — you are in good shape.':pct>=70?' — solid, but tighten the weak weeks below.':' — focus on the weakest weeks below before anything else.');
     document.getElementById('tiles').innerHTML=
-      '<div class="tile"><b>'+right+'/'+quiz.length+'</b><span>Score</span></div>'+
+      '<div class="tile"><b>'+nice(pts)+'/'+quiz.length+'</b><span>Points</span></div>'+
       '<div class="tile"><b>'+pct+'%</b><span>Percent</span></div>'+
       '<div class="tile"><b>'+mins+'</b><span>Minutes</span></div>'+
-      '<div class="tile"><b>'+(quiz.length-right)+'</b><span>To review</span></div>';
+      '<div class="tile"><b>'+(quiz.length-full)+'</b><span>To review</span></div>';
 
     document.getElementById('byWeek').innerHTML=S.WEEKS.filter(function(w){return byWk[w];}).map(function(w){
       var d=byWk[w], p=Math.round(d.c/d.n*100);
       return '<div class="wrow"><span class="wlab">Week '+w+'</span>'+
         '<span class="wbar"><span class="pbar'+(p<70?' gold':'')+'"><span style="width:'+p+'%"></span></span></span>'+
-        '<span class="wpct">'+d.c+'/'+d.n+' · '+p+'%</span></div>';
+        '<span class="wpct">'+nice(d.c)+'/'+d.n+' · '+p+'%</span></div>';
     }).join('');
 
     var weak=Object.keys(byTopic).map(function(k){
-      var d=byTopic[k]; return {k:k,pct:d.c/d.n,n:d.n,miss:d.n-d.c};
-    }).filter(function(x){return x.miss>0;}).sort(function(a,b){
+      var d=byTopic[k]; return {k:k,pct:d.c/d.n,n:d.n,miss:Math.round((d.n-d.c)*10)/10};
+    }).filter(function(x){return x.miss>0.05;}).sort(function(a,b){
       return (a.pct-b.pct)||(b.miss-a.miss);
     }).slice(0,6);
     document.getElementById('weakCard').style.display=weak.length?'':'none';
@@ -235,19 +289,29 @@ window.FinalSuite.loadData(function(){
       var p=x.k.split('|');
       return '<div class="wrow"><span class="wlab">Week '+p[0]+'</span>'+
         '<span class="wbar" style="font-size:13.5px;">'+S.esc(p[1])+'</span>'+
-        '<span class="wpct">'+x.miss+' missed</span></div>';
+        '<span class="wpct">'+nice(x.miss)+' pt'+(x.miss===1?'':'s')+' lost</span></div>';
     }).join('')||'<p class="note">Nothing missed — well done.</p>';
 
     document.getElementById('review').innerHTML=quiz.map(function(q,i){
-      var ok=answers[i]===q.c;
-      return '<div class="rev '+(ok?'ok':'bad')+'" data-ok="'+(ok?1:0)+'">'+
-        '<div class="rq">'+(i+1)+'. '+S.esc(q.q)+'</div>'+
+      var g=marks[i], multi=g.multi, ok=g.full;
+      var sel=multi?(answers[i]||[]):answers[i];
+      var isRight=function(j){ return multi ? q.m.indexOf(j)>=0 : j===q.c; };
+      var isPicked=function(j){ return multi ? sel.indexOf(j)>=0 : j===sel; };
+      var badge = multi
+        ? '<span class="revpts">'+g.hit+' of '+g.need+' right'+(g.miss?' · '+g.miss+' wrong tick'+(g.miss===1?'':'s'):'')+
+          ' · '+nice(g.pts)+' pt</span>'
+        : '';
+      return '<div class="rev '+(ok?'ok':(g.pts>0?'':'bad'))+'" data-ok="'+(ok?1:0)+'">'+
+        '<div class="rhead"><div class="rq">'+(i+1)+'. '+S.esc(q.q)+'</div>'+badge+'</div>'+
         q.a.map(function(a,j){
-          var cls=j===q.c?'ra yes':(j===answers[i]?'ra no':'ra');
-          var mark=j===q.c?'✓ ':(j===answers[i]?'✗ ':'');
-          return '<div class="'+cls+'">'+mark+S.esc(a)+'</div>';
+          var right=isRight(j), picked=isPicked(j);
+          /* right+picked = got it · right+missed = should have ticked · wrong+picked = mistake */
+          var cls = right ? 'ra yes' : (picked ? 'ra no' : 'ra');
+          if(right && !picked) cls='ra yes shouldve';
+          var mark = right ? (picked?'✓ ':'✓ (missed) ') : (picked?'✗ ':'');
+          return '<div class="'+cls+(picked?' picked':'')+'">'+mark+S.esc(a)+'</div>';
         }).join('')+
-        (answers[i]===null?'<div class="ra no">✗ Not answered</div>':'')+
+        (!g.answered?'<div class="ra no">✗ Not answered</div>':'')+
         '<div class="rfb"><b>Why:</b> '+S.esc(q.fb)+'</div>'+
         '<div style="margin-top:7px;"><span class="chip">Week '+q.week+'</span> <span class="chip gold">'+S.esc(q.t||'General')+'</span></div>'+
       '</div>';

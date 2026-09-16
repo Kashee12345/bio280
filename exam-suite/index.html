@@ -51,7 +51,7 @@
   <div class="hero">
     <div class="eyebrow">BIO 280 · Pathophysiology · Joyce University</div>
     <h1>Exam Prep HQ</h1>
-    <p>Pick the exam you're studying for, then work the tools. Everything is drawn from the course question bank &mdash; <b>755 questions</b> across the six unit exams and the cumulative final.</p>
+    <p>Pick the exam you're studying for, then work the tools. Everything is drawn from the course question bank &mdash; <b>755 questions</b> across the six unit exams and the cumulative final, including <b>150 select-all-that-apply</b> items scored with partial credit.</p>
   </div>
 
   <div class="sect">Where you stand</div>
@@ -184,8 +184,10 @@
     } else {
       wb.innerHTML='<div class="weakbox">Nothing recorded yet. Run the <b>Exam Simulator</b> once to find out where you stand.</div>';
     }
+    /* totC can be fractional: select-all-that-apply items are scored with partial credit */
+    var totShow=Math.round(totC*10)/10;
     document.getElementById('summary').textContent=
-      totN?(totC+' of '+totN+' correct overall ('+Math.round(totC/totN*100)+'%)'):'No attempts recorded yet.';
+      totN?(totShow+' of '+totN+' points overall ('+Math.round(totC/totN*100)+'%)'):'No attempts recorded yet.';
   }
 
   document.getElementById('picker').addEventListener('click',function(ev){
