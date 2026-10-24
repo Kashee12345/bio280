@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#8a2f36">
+<title>BIO 280 · Pathophysiology — Joyce University</title>
+<meta name="description" content="BIO 280 Pathophysiology at Joyce University: weekly podcasts, interactive books, flipbooks and flashcards, 86 interactive lessons, Exam Prep HQ and games.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>/* Course hub home page, Oct 2026 revamp.
+   Layout and components follow drgarglearning.com (hero with live question, stats, tool cards with clips,
+   week path, exam cards, footer) in Joyce University colors. Built by hubtools/build_hubs.py. */
+:root{
+  --ink:#241f1b; --mute:#66594f; --faint:#73675b;
+  --bg:#fbf8f2; --bg2:#f4ede1; --card:#fffdf8; --line:#e6dccb; --line2:#d9ccb6;
+  --maroon:#8a2f36; --maroon-d:#5e1f24; --maroon-soft:#f7e9e9;
+  --gold:#c99a2e; --gold-d:#9a7418; --gold-t:#7f5f12; --gold-ink:#2b1f05; --gold-soft:#f7eeda;
+  --teal:#0c7283; --teal-d:#0c3a44; --teal-soft:#e4f1f3;
+  --night:#2a1416; --night2:#3a1d20; --night-mute:#d9c7c0;
+  --ok:#276b44; --ok-soft:#e5f3ea; --bad:#b0332c; --bad-soft:#fbeae8;
+  --disp:"Fraunces",Georgia,"Times New Roman",serif; --body:"Inter",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --r:18px; --shadow:0 1px 0 var(--line),0 12px 26px -18px rgba(60,30,20,.38);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16.5px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{max-width:100%;display:block}
+a{color:var(--maroon)}
+h1,h2,h3{font-family:var(--disp);font-weight:700;line-height:1.08;letter-spacing:-.01em;margin:0;color:var(--maroon-d)}
+p{margin:0}
+button{font:inherit}
+.wrap{width:min(1200px,100%);margin:0 auto;padding-inline:16px}
+@media (min-width:700px){.wrap{padding-inline:28px}}
+.sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--maroon-d);color:#fff;padding:10px 14px;border-radius:10px;font-weight:700;text-decoration:none}
+.skip:focus{top:12px}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px;border-radius:8px}
+.foot :focus-visible,.dark :focus-visible{outline-color:var(--gold)}
+
+/* announcement banner (kept from the original page) */
+.notice{background:linear-gradient(180deg,#fbf3e2,#f7ecd8);border-bottom:1px solid #ecdcb8}
+.notice .ni{display:flex;gap:12px;align-items:flex-start;padding-block:13px}
+.notice .nx{font-size:21px;line-height:1.2;flex:none}
+.notice .nt{color:#6d5518;font-size:14px;line-height:1.5}
+.notice .nt strong{display:block;font-family:var(--disp);font-weight:700;font-size:16px;color:#57420f;margin-bottom:2px}
+
+/* What's New (BIO 280) */
+.wnew{background:var(--card);border-bottom:1px solid var(--line)}
+.wnew summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding-block:12px;font-size:14px;font-weight:700;color:var(--maroon-d)}
+.wnew summary::-webkit-details-marker{display:none}
+.wnew .wn-latest{font-weight:500;color:var(--faint);font-size:13px}
+.wnew .wn-chev{margin-left:auto;color:var(--faint);transition:transform .2s}
+.wnew details[open] .wn-chev{transform:rotate(90deg)}
+.wnew .wn-body{padding-bottom:14px}
+.wnew .wn-intro{margin:6px 0 4px;font-size:13px;color:var(--faint);font-style:italic}
+.wnew .wn-item{display:flex;gap:14px;padding:11px 0;border-bottom:1px dashed var(--line)}
+.wnew .wn-item:last-child{border-bottom:0}
+.wnew .wn-date{flex:none;width:104px;font-size:12px;font-weight:700;color:var(--maroon);background:var(--maroon-soft);border-radius:8px;padding:5px 0;text-align:center;height:fit-content}
+.wnew .wn-txt h4{margin:0 0 2px;font-size:14.5px}
+.wnew .wn-txt p{font-size:13.5px;color:var(--mute);line-height:1.5}
+.wnew .wn-tag{font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--gold-t);border:1px solid var(--gold);padding:1px 6px;border-radius:9px;margin-left:7px;vertical-align:middle}
+@media (max-width:560px){.wnew .wn-item{flex-direction:column;gap:5px}.wnew .wn-date{width:auto;align-self:flex-start;padding:4px 11px}}
+
+/* header */
+.top{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.top .bar{display:flex;align-items:center;gap:14px;min-height:64px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--maroon-d);min-width:0}
+.logo .crest{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:23px;line-height:1;background:var(--card);border:1px solid var(--line);box-shadow:0 2px 0 var(--line);flex:none}
+.logo b{display:block;font-family:var(--disp);font-size:18px;line-height:1.1;white-space:nowrap}
+.logo small{display:block;font-size:12px;color:var(--mute);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav{display:none;margin-left:auto;gap:4px}
+.nav a{color:var(--ink);text-decoration:none;font-weight:600;font-size:15px;padding:8px 12px;border-radius:10px}
+.nav a:hover{background:var(--bg2)}
+.top .btn{margin-left:auto}
+@media (min-width:760px){.nav{display:flex}.top .btn{margin-left:8px}}
+.mnav{display:flex;gap:8px;overflow-x:auto;padding:0 0 10px;scrollbar-width:none}
+.mnav::-webkit-scrollbar{display:none}
+.mnav a{flex:none;text-decoration:none;color:var(--ink);font-weight:600;font-size:14px;background:var(--card);border:1px solid var(--line);padding:7px 12px;border-radius:99px}
+@media (min-width:760px){.mnav{display:none}}
+@media (max-height:520px) and (orientation:landscape){.top{position:relative}}
+
+/* buttons */
+.btn{--c:var(--gold);--cd:var(--gold-d);--ci:var(--gold-ink);display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 15px/1 var(--body);color:var(--ci);background:var(--c);border:0;border-radius:14px;padding:12px 16px;text-decoration:none;cursor:pointer;box-shadow:0 4px 0 var(--cd);transition:transform .08s,box-shadow .08s,filter .15s;white-space:nowrap}
+.btn:hover{filter:brightness(1.05)}
+.btn:active{transform:translateY(4px);box-shadow:0 0 0 var(--cd)}
+.btn.maroon{--c:var(--maroon);--cd:var(--maroon-d);--ci:#fff}
+.btn.ghost{--c:var(--card);--cd:var(--line2);--ci:var(--ink);border:2px solid var(--line)}
+.btn.sm{font-size:14px;padding:9px 13px;border-radius:12px}
+@media (max-width:420px){.top .btn{padding:10px 12px;font-size:14px}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:radial-gradient(800px 420px at 90% 0%,color-mix(in srgb,var(--maroon) 13%,transparent),transparent 70%),radial-gradient(640px 380px at 0% 100%,color-mix(in srgb,var(--gold) 22%,transparent),transparent 70%),var(--bg)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:30px;padding-block:30px 44px}
+@media (min-width:980px){.hero .wrap{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:48px;align-items:center;padding-block:54px 66px}}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:13.5px;color:var(--maroon-d);background:var(--card);border:1px solid var(--line);padding:6px 12px 6px 8px;border-radius:99px;max-width:100%}
+.kicker span{white-space:normal}
+.kicker i{font-style:normal;font-size:16px;line-height:1}
+.hero h1{font-size:clamp(38px,6.4vw,70px);font-weight:700;margin-top:16px;color:var(--maroon-d)}
+.hero h1 em{font-style:italic;font-weight:600;background:linear-gradient(transparent 64%,color-mix(in srgb,var(--gold) 55%,transparent) 64%);padding:0 .05em}
+.hero .sub{font-size:clamp(17px,1.8vw,20px);color:var(--mute);max-width:36ch;margin-top:14px}
+.byline{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:14px;font-weight:600;color:var(--mute)}
+.byline .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px color-mix(in srgb,var(--ok) 22%,transparent)}
+.optional{margin-top:10px;font-size:13.5px;color:var(--mute);background:var(--gold-soft);border:1px solid #ecdcb8;border-radius:12px;padding:8px 12px;max-width:52ch}
+.optional b{color:#57420f}
+
+/* course search */
+.hsearch{margin-top:22px;max-width:560px}
+.sbox{position:relative}
+.hsearch form{display:flex;align-items:center;gap:8px;background:var(--card);border:2px solid var(--line);border-radius:16px;padding:6px 6px 6px 14px;box-shadow:0 3px 0 var(--line);transition:border-color .15s}
+.hsearch form:focus-within{border-color:var(--maroon)}
+.hsearch svg{width:20px;height:20px;color:var(--mute);flex:none}
+.hsearch input{flex:1;min-width:0;border:0;background:transparent;font:inherit;font-size:16px;color:var(--ink);padding:9px 2px;outline:none}
+.hsearch input::placeholder{color:var(--faint)}
+.hsearch .btn{padding:11px 16px}
+.results{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:30;background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 50px -20px rgba(60,30,20,.45);padding:6px;max-height:min(420px,60vh);overflow:auto;display:none}
+.results.on{display:block}
+.results a{display:flex;gap:10px;align-items:flex-start;padding:9px 10px;border-radius:10px;text-decoration:none;color:var(--ink)}
+.results a:hover,.results a[aria-selected=true]{background:var(--maroon-soft)}
+.results .rtt{display:block;font-weight:600;font-size:15px;line-height:1.3}
+.results .rss{display:block;font-size:12.5px;color:var(--mute);line-height:1.35;margin-top:1px}
+.results .rk{flex:none;font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--maroon);background:var(--maroon-soft);border-radius:6px;padding:3px 6px;margin-top:2px;min-width:58px;text-align:center}
+.results .none{padding:12px;color:var(--mute);font-size:14px}
+.quick{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.quick a{font-size:13.5px;font-weight:600;color:var(--maroon-d);text-decoration:none;background:color-mix(in srgb,var(--card) 70%,transparent);border:1px solid var(--line);border-radius:99px;padding:6px 11px}
+.quick a:hover{border-color:var(--maroon)}
+
+/* hero stage: screenshot + live question */
+.stage{position:relative}
+.stage .shot{position:absolute;right:-18px;top:0;width:min(62%,330px);border-radius:16px;overflow:hidden;box-shadow:0 30px 60px -22px rgba(60,30,20,.55);transform:rotate(3deg);border:5px solid var(--card);background:#111}
+.stage .shot img{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover}
+.quiz{position:relative;z-index:2;margin:110px 0 0;width:100%;background:var(--card);border:2px solid var(--line);border-radius:22px;padding:16px 16px 14px;box-shadow:0 24px 50px -20px rgba(60,30,20,.4)}
+@media (min-width:600px){.quiz{margin:120px 0 0 auto;width:min(470px,86%)}.stage .shot{right:auto;left:0}}
+@media (min-width:980px){.stage{min-height:520px}.stage .shot{left:auto;right:-10px;top:-10px;width:300px}.quiz{margin:120px auto 0 0;width:min(460px,92%)}}
+.qhead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+.qtag{font-size:12px;font-weight:700;padding:5px 10px;border-radius:99px;color:#fff;background:var(--maroon)}
+.qcount{font-size:13px;color:var(--mute);font-weight:600}
+.quiz h3{font-family:var(--body);font-weight:700;font-size:17.5px;line-height:1.35;color:var(--ink);margin:0 0 12px}
+.opts{display:grid;gap:8px}
+.opt{display:flex;align-items:center;gap:10px;text-align:left;width:100%;font:500 15px/1.35 var(--body);color:var(--ink);background:var(--bg);border:2px solid var(--line);border-radius:12px;padding:9px 11px;cursor:pointer;box-shadow:0 3px 0 var(--line);transition:border-color .12s,transform .08s}
+.opt:hover:not([disabled]){border-color:var(--maroon)}
+.opt:active:not([disabled]){transform:translateY(2px)}
+.opt b{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:var(--bg2);font-size:13px;flex:none}
+.opt[disabled]{cursor:default}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}.opt.right b{background:var(--ok);color:#fff}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}.opt.wrong b{background:var(--bad);color:#fff}
+.opt.dim{opacity:.55}
+.res{margin-top:12px;font-size:14.5px;line-height:1.5;display:none;border-radius:12px;padding:10px 12px}
+.res.on{display:block}
+.res.good{background:var(--ok-soft);color:#1f5a38}.res.bad{background:var(--bad-soft);color:#7d2420}
+.res strong{display:block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px}
+.res .cite{display:block;margin-top:6px;font-size:12.5px;opacity:.85}
+.qfoot{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin-top:12px}
+.qfoot a{font-weight:700;font-size:14px;text-decoration:none}
+.qfoot button{background:none;border:0;color:var(--maroon);font-weight:700;font-size:14px;cursor:pointer;padding:6px 0}
+
+/* stats */
+.stats{border-block:1px solid var(--line);background:var(--card)}
+.stats ul{list-style:none;margin:0;padding:22px 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 16px}
+@media (min-width:640px){.stats ul{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:1050px){.stats ul{grid-template-columns:repeat(6,minmax(0,1fr))}}
+.stats li{display:flex;flex-direction:column;gap:2px;padding-left:12px;border-left:3px solid var(--sc,var(--maroon))}
+.stats b{font-family:var(--disp);font-weight:700;font-size:clamp(30px,4.6vw,42px);line-height:1;color:var(--maroon-d);font-variant-numeric:tabular-nums}
+.stats span{font-size:13.5px;color:var(--mute);font-weight:600;line-height:1.3}
+
+/* sections */
+.sec{padding-block:44px}
+@media (min-width:900px){.sec{padding-block:64px}}
+.sec.alt{background:var(--bg2)}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.head h2{font-size:clamp(28px,4vw,42px)}
+.head p{color:var(--mute);margin-top:8px;max-width:58ch}
+.eyebrow{display:block;font:800 12px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--gold-t);margin-bottom:8px}
+.railbtns{display:flex;gap:8px}
+.railbtns button{width:42px;height:42px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;display:grid;place-items:center;box-shadow:0 3px 0 var(--line)}
+.railbtns button:hover{border-color:var(--maroon)}
+.railbtns svg{width:18px;height:18px}
+
+/* tool cards with preview clips */
+.rail{--cw:clamp(232px,72vw,272px);list-style:none;margin:0 -16px;padding:4px 16px 18px;display:grid;grid-auto-flow:column;grid-auto-columns:var(--cw);gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:16px;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:var(--line2) transparent}
+@media (min-width:700px){.rail{margin-inline:-28px;padding-inline:28px;scroll-padding-inline:28px}}
+@media (max-height:500px) and (orientation:landscape){.rail{--cw:200px}}
+.rail > li{scroll-snap-align:start;display:flex}
+.tcard{position:relative;display:flex;flex-direction:column;width:100%;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;text-decoration:none;color:var(--ink);box-shadow:var(--shadow);transition:transform .18s cubic-bezier(.2,.8,.2,1),border-color .15s,box-shadow .18s}
+@media (hover:hover){.tcard:hover{transform:translateY(-3px);border-color:var(--line2);box-shadow:0 1px 0 var(--line),0 22px 40px -22px rgba(60,30,20,.5)}}
+.tcard:active{transform:scale(.985)}
+.media{position:relative;aspect-ratio:3/4;background:#1b1214;overflow:hidden}
+.media img,.media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.media video{opacity:0;transition:opacity .35s}
+.media video.on{opacity:1}
+.media .tag{position:absolute;left:10px;top:10px;z-index:2;font-size:11.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:4px 8px;border-radius:8px;background:rgba(255,253,248,.94);color:var(--maroon-d);box-shadow:0 2px 6px rgba(0,0,0,.18)}
+.media .tag.gold{background:var(--gold);color:var(--gold-ink)}
+.media .live{position:absolute;right:10px;top:10px;z-index:2;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#fff;background:rgba(20,10,10,.55);padding:4px 7px;border-radius:8px}
+.media .live i{width:6px;height:6px;border-radius:50%;background:#ff5d5d}
+.media.art{display:grid;place-items:center;background:linear-gradient(150deg,var(--maroon) 0%,var(--maroon-d) 70%)}
+.media.art .big{font-family:var(--disp);font-weight:700;color:#fff;font-size:64px;line-height:.95;text-align:center}
+.media.art .big small{display:block;font:700 13px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--gold-soft);margin-top:10px}
+.tbody{display:flex;flex-direction:column;gap:5px;padding:14px 15px 15px;flex:1}
+.tbody h3{font-size:20px}
+.tbody p{font-size:14px;color:var(--mute);line-height:1.45}
+.tbody .go{margin-top:auto;padding-top:6px;font-weight:700;font-size:14px;color:var(--maroon)}
+.rail.games .tcard{background:var(--night);border-color:var(--night2);color:#fff}
+.rail.games .tbody h3{color:#fff}.rail.games .tbody p{color:var(--night-mute)}.rail.games .tbody .go{color:var(--gold)}
+.dark{background:var(--night);color:#fff}
+.dark .head h2{color:#fff}.dark .head p{color:var(--night-mute)}.dark .eyebrow{color:var(--gold)}
+.dark .railbtns button{background:var(--night2);border-color:#5a3236;color:#fff;box-shadow:0 3px 0 #1a0c0d}
+.swipe{display:none}
+
+/* week / module path */
+.chips{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 12px;margin-inline:-2px;scrollbar-width:thin;scroll-snap-type:x proximity}
+.chip{flex:none;scroll-snap-align:start;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-width:62px;height:58px;padding:6px 10px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;box-shadow:0 3px 0 var(--line);font-weight:700}
+.chip small{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+.chip span{font-family:var(--disp);font-size:21px;line-height:1}
+.chip:hover{border-color:var(--maroon)}
+.chip[aria-pressed=true]{background:var(--maroon);border-color:var(--maroon);color:#fff;box-shadow:0 3px 0 var(--maroon-d)}
+.chip[aria-pressed=true] small{color:var(--gold-soft)}
+.chip.now::after{content:"";position:absolute}
+.chip .nowdot{display:block;width:7px;height:7px;border-radius:50%;background:var(--ok);margin-top:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:18px}
+@media (min-width:800px){.panel{padding:24px 26px}}
+.ptop{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:10px 16px}
+.ptop h3{font-size:clamp(24px,3.4vw,32px)}
+.pmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;padding:4px 10px;border-radius:99px;background:var(--bg2);color:var(--mute)}
+.pill.ex{background:var(--gold-soft);color:#7a5a0e}
+.pill.now{background:var(--ok-soft);color:var(--ok)}
+.ptopic{color:var(--mute);margin-top:8px;font-size:15px;max-width:70ch}
+.res-row{list-style:none;margin:16px -18px 0;padding:2px 18px 12px;display:grid;grid-auto-flow:column;grid-auto-columns:148px;gap:10px;overflow-x:auto;scrollbar-width:thin;scrollbar-color:var(--line2) transparent;scroll-snap-type:x proximity}
+.res-row>li{scroll-snap-align:start}
+@media (min-width:800px){.res-row{margin-inline:-26px;padding-inline:26px;grid-auto-columns:minmax(132px,1fr)}}
+.rt{display:flex;flex-direction:column;gap:6px;height:100%;min-height:118px;padding:12px;border-radius:14px;border:1px solid var(--line);background:var(--bg);text-decoration:none;color:var(--ink);transition:border-color .15s,transform .18s cubic-bezier(.2,.8,.2,1)}
+.rt:hover{border-color:var(--maroon);transform:translateY(-2px)}
+.rt .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--maroon-soft);color:var(--maroon)}
+.rt .ic svg{width:19px;height:19px}
+.rt b{font-size:14.5px;line-height:1.25}
+.rt small{font-size:12.5px;color:var(--mute);line-height:1.35}
+.rt .ext{font-size:11px;font-weight:700;color:var(--faint);margin-top:auto}
+.rt.teal .ic{background:var(--teal-soft);color:var(--teal)}
+.rt.gold .ic{background:var(--gold-soft);color:var(--gold-t)}
+.rt.ok .ic{background:var(--ok-soft);color:var(--ok)}
+.sub-h{font:800 12px var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin:18px 0 8px}
+.lessons{display:flex;flex-wrap:wrap;gap:8px}
+.lessons a{font-size:14px;font-weight:600;text-decoration:none;color:var(--teal-d);background:var(--teal-soft);border-radius:10px;padding:7px 11px}
+.lessons a:hover{background:color-mix(in srgb,var(--teal) 18%,var(--teal-soft))}
+details.more{margin-top:14px;border-top:1px dashed var(--line);padding-top:10px}
+details.more summary{cursor:pointer;font-weight:700;font-size:14px;color:var(--maroon);list-style:none;display:flex;align-items:center;gap:6px}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::before{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-45deg);transition:transform .2s;margin-right:2px}
+details.more[open] summary::before{transform:rotate(45deg)}
+details.more ul{margin:10px 0 0;padding-left:20px;color:var(--mute);font-size:14.5px}
+details.more li{margin-bottom:5px}
+.wb{margin-top:12px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg)}
+.wb iframe{display:block;width:100%;height:600px;border:0;background:#fbf7ef}
+.allweeks{margin-top:18px}
+.allweeks > summary{cursor:pointer;font-weight:700;color:var(--maroon);list-style:none;display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:2px solid var(--line);background:var(--card);box-shadow:0 3px 0 var(--line)}
+.allweeks > summary::-webkit-details-marker{display:none}
+.wk-list{display:grid;gap:8px;margin-top:12px}
+.wk-item{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.wk-item h4{margin:0 0 6px;font-size:15px}
+.wk-item h4 span{color:var(--maroon);margin-right:6px}
+.wk-item .links{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px}
+.wk-item .links a{font-weight:600}
+
+/* exams */
+.exams{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+@media (min-width:700px){.exams{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1080px){.exams{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.excard{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--shadow);border-top:5px solid var(--ec,var(--maroon))}
+.excard.final{--ec:var(--gold);background:linear-gradient(180deg,var(--gold-soft),var(--card) 60%);grid-column:1/-1}
+@media (min-width:860px){.excard.final:has(.finalgrid){display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:26px;align-items:start}.excard.final .exhead,.excard.final .covers,.excard.final .exlinks{grid-column:1}.excard.final .finalgrid{grid-column:2;grid-row:1/span 3;margin-top:0}.excard.final .exlinks{margin-top:0}}
+@media (min-width:1080px){.exams.g5{grid-template-columns:repeat(5,minmax(0,1fr))}.exams.g5 .excard:not(.final) .exlinks{flex-direction:column}.exams.g5 .exhead{flex-direction:column;align-items:flex-start;gap:2px}}
+@media (min-width:700px) and (max-width:1079px){.exams.g5 .excard:nth-child(5){grid-column:1/-1}}
+.exhead{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.exhead h3{font-size:24px}
+.exhead span{font-size:13px;font-weight:700;color:var(--mute);white-space:nowrap}
+.excard .covers{margin-top:6px;color:var(--mute);font-size:14.5px;line-height:1.45}
+.exlinks{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:14px}
+.exlinks a{flex:1 1 auto;justify-content:center;display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;text-decoration:none;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:9px 10px;white-space:nowrap}
+.exlinks a:hover{border-color:var(--maroon);color:var(--maroon)}
+.exlinks a svg{width:16px;height:16px;color:var(--maroon)}
+.exlinks a.chase{background:var(--night);border-color:var(--night);color:#fff}
+.exlinks a.chase svg{color:var(--gold)}
+.exlinks a.chase:hover{color:var(--gold)}
+.finalgrid{display:grid;gap:10px;margin-top:12px}
+.fmod{display:flex;gap:12px;align-items:center;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}
+.fmod:hover{border-color:var(--maroon)}
+.fmod .n{flex:none;width:52px;height:52px;border-radius:12px;display:grid;place-items:center;background:var(--maroon);color:#fff;font:700 22px var(--disp)}
+.fmod b{display:block;font-size:15px}
+.fmod small{color:var(--mute);font-size:13px}
+
+/* how-to (BIO 280, kept content) */
+details.usehub{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+details.usehub>summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:center;gap:4px 11px;padding:16px 18px;font-weight:700;font-size:16px}
+@media (max-width:600px){details.usehub .uh-hint{order:3;flex-basis:100%;padding-left:31px}}
+details.usehub>summary::-webkit-details-marker{display:none}
+details.usehub .uh-hint{font-weight:400;color:var(--mute);font-size:14px}
+details.usehub .chev{margin-left:auto;color:var(--faint);transition:transform .2s}
+details.usehub[open] .chev{transform:rotate(90deg)}
+details.usehub[open]>summary{border-bottom:1px solid var(--line)}
+.uh-body{padding:4px 18px 20px}
+.uh-body .sl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--faint);margin:16px 0 6px}
+.gintro{font-size:14px;color:var(--mute);margin:4px 0 12px}
+.guide{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+@media (min-width:800px){.guide{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.guide .tool{display:flex;gap:12px;align-items:flex-start;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.guide .tool .tico{font-size:20px;flex:none}
+.guide .tool h4{margin:0 0 3px;font-size:14.5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.guide .tool .where{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);font-weight:800}
+.guide .tool p{font-size:13.5px;color:var(--mute);line-height:1.55}
+.flow{background:var(--maroon-soft);border:1px solid #e8cfd0;border-radius:12px;padding:14px 18px;margin-top:14px}
+.flow h4{margin:0 0 8px;font-size:15px;color:var(--maroon-d)}
+.flow ol{margin:0;padding-left:20px}.flow li{font-size:14px;margin:5px 0}
+
+/* footer */
+.foot{background:var(--night);color:var(--night-mute)}
+.foot .wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:26px;padding-block:44px 30px;font-size:14.5px}
+@media (min-width:860px){.foot .wrap{grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(0,1fr))}}
+.foot .logo{color:#fff}
+.foot .logo .crest{background:var(--night2);border-color:#5a3236;box-shadow:none}
+.foot .logo small{color:var(--night-mute)}
+.foot .who{margin-top:14px;line-height:1.7}
+.foot .who b{color:#fff}
+.foot h2{font:800 12px var(--body);letter-spacing:.14em;text-transform:uppercase;color:#fff;margin:0 0 10px}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.foot a{color:var(--night-mute);text-decoration:none}
+.foot a:hover{color:#fff;text-decoration:underline}
+.foot .fine{grid-column:1/-1;border-top:1px solid #4a2a2d;padding-top:18px;font-size:13px;color:#bba7a0}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="notice"><div class="wrap ni">
+  <div class="nx" aria-hidden="true">🚧</div>
+  <div class="nt">
+    <strong>This hub grows all term long — thanks for your patience!</strong>
+    <span>New podcasts, books, flipbooks, and study guides are added as we go. If something is missing or marked "coming soon," it's on the way.</span>
+  </div>
+</div></div>
+<div class="wnew"><details id="whatsnew"><summary class="wrap"><span aria-hidden="true">📢</span>What&rsquo;s New <span class="wn-latest" id="wnLatest"></span><span class="wn-chev" aria-hidden="true">›</span></summary>
+<div class="wn-body wrap" id="wnBody"></div></details></div>
+<header class="top"><div class="wrap">
+<div class="bar"><a class="logo" href="index.html"><span class="crest" aria-hidden="true">&#9877;&#65039;</span><span><b>BIO 280</b><small>Pathophysiology</small></span></a>
+<nav class="nav" aria-label="Main"><a href="#tools">Tools</a><a href="#path">This week</a><a href="#exams">Exams</a><a href="#howto">How to use</a></nav>
+<a class="btn sm" href="exam-suite/index.html">Exam Prep HQ</a></div>
+<nav class="mnav" aria-label="Sections"><a href="#tools">Tools</a><a href="#path">This week</a><a href="#exams">Exams</a><a href="#howto">How to use</a></nav>
+</div></header>
+<main id="main">
+<section class="hero"><div class="wrap">
+<div>
+<span class="kicker"><i aria-hidden="true">&#9877;&#65039;</i><span>Joyce University · Nursing &amp; Health Sciences</span></span>
+<h1>Pathophysiology, <em>explained</em> and played.</h1>
+<p class="sub">Every resource for the course in one place. Pick a week to open its podcast, interactive book, flipbook and flashcards, or jump to an exam.</p>
+<p class="byline"><span class="dot" aria-hidden="true"></span>Dr. Akash Garg</p>
+<p class="optional"><b>Optional study extras.</b> Everything on this hub is extra practice. Your required work, readings and lecture slides are in Canvas.</p>
+<div class="hsearch"><div class="sbox"><form id="hform" role="search" action="#tools">
+<label class="sr" for="hq">Search this course</label><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+<input id="hq" type="search" placeholder="Search: ABGs, stroke" autocomplete="off" enterkeyhint="search" role="combobox" aria-expanded="false" aria-controls="hres" aria-autocomplete="list">
+<button class="btn" type="submit">Search</button></form>
+<div class="results" id="hres" role="listbox" aria-label="Search results"></div></div>
+<div class="quick" aria-label="Popular searches"><a href="#" data-q="ABG">ABG</a><a href="#" data-q="stroke">stroke</a><a href="#" data-q="heart failure">heart failure</a><a href="#" data-q="Exam 4">Exam 4</a></div></div>
+</div>
+<div class="stage">
+<div class="shot" aria-hidden="true"><img src="assets/previews/chase.jpg" alt="" width="480" height="640" fetchpriority="low"></div>
+<div class="quiz" id="tryone" aria-labelledby="tryq">
+<div class="qhead"><span class="qtag">Heart Failure Left vs Right</span><span class="qcount">Try one</span></div>
+<h3 id="tryq">What is the most common cause of right-sided heart failure?</h3>
+<div class="opts" role="group" aria-label="Answers"><button class="opt" type="button" data-k="0"><b>A</b><span>Left-sided heart failure or pulmonary hypertension</span></button><button class="opt" type="button" data-k="1"><b>B</b><span>Iron deficiency anemia</span></button><button class="opt" type="button" data-k="2"><b>C</b><span>Mitral valve prolapse alone</span></button><button class="opt" type="button" data-k="3"><b>D</b><span>Acute pericarditis</span></button></div>
+<div class="res" aria-live="polite"></div><noscript><p class="res on good"><strong>Answer: A</strong>Left-sided heart failure or pulmonary hypertension. When the left side fails, pressure backs up into the lungs and eventually overworks the right ventricle. Primary pulmonary hypertension does the same.</p></noscript>
+<div class="qfoot"><button type="button" data-next>Try another question</button><a href="exam-suite/index.html">Exam Prep HQ &rarr;</a></div>
+</div>
+<script>window.TRY_QS=[{"tag": "Heart Failure Left vs Right", "q": "What is the most common cause of right-sided heart failure?", "a": ["Left-sided heart failure or pulmonary hypertension", "Iron deficiency anemia", "Mitral valve prolapse alone", "Acute pericarditis"], "c": 0, "why": "When the left side fails, pressure backs up into the lungs and eventually overworks the right ventricle. Primary pulmonary hypertension does the same.", "cite": ""}, {"tag": "Fluid Distribution", "q": "Approximately what percentage of total body weight is water in the average adult?", "a": ["40%", "50%", "60%", "80%"], "c": 2, "why": "Roughly 60% of body weight is water. Two-thirds sits inside cells (intracellular) and one-third sits outside cells (extracellular), which is further split into intravascular, interstitial, and transcellular compartments.", "cite": ""}, {"tag": "Measles", "q": "A nurse is teaching about measles. Which preventive measure is most effective?", "a": ["MMR vaccination per the immunization schedule", "Vitamin C supplementation", "Avoiding cold beverages", "Daily handwashing alone"], "c": 0, "why": "Measles is highly contagious; the MMR vaccine is the cornerstone of prevention with proven population immunity above ~95%.", "cite": ""}, {"tag": "Kidney Stones", "q": "A client with gout is found to have a kidney stone. Which type of stone is most likely?", "a": ["Uric acid", "Struvite", "Cystine", "Calcium phosphate"], "c": 0, "why": "High serum uric acid (as in gout) acidifies the urine and produces uric acid stones.", "cite": ""}, {"tag": "Cancer Types by Tissue", "q": "A client is diagnosed with osteosarcoma. The nurse knows this cancer originated in which tissue?", "a": ["Bone (connective tissue)", "Skin epithelium", "Lymph nodes", "Plasma cells"], "c": 0, "why": "Sarcomas arise from connective tissues; osteosarcoma is a bone-origin sarcoma. Lymphomas, carcinomas, and myelomas arise from different tissues.", "cite": ""}, {"tag": "Genotype/Phenotype", "q": "Which genotype represents a homozygous dominant individual at a single gene locus?", "a": ["BB", "Bb", "bb", "bY"], "c": 0, "why": "Two identical capital (dominant) alleles, such as BB, denote a homozygous dominant genotype. Bb is heterozygous and bb is homozygous recessive.", "cite": ""}, {"tag": "H. pylori", "q": "A client with a duodenal ulcer caused by H. pylori reports that the pain typically:", "a": ["Worsens immediately during meals", "Is relieved by eating and returns 2 to 3 hours after a meal", "Is constant and unrelated to food intake", "Improves only with antacid use while eating"], "c": 1, "why": "Duodenal ulcers classically present with hunger-like pain relieved by food and recurring 2-3 hours after meals. Gastric ulcers worsen with food.", "cite": ""}];</script>
+<script>/* "Try one" question card. Runs inline right after the card, so it works before anything else loads. */
+(function () {
+  var card = document.getElementById("tryone");
+  if (!card) return;
+  var Q = window.TRY_QS || [], L = "ABCDEFGH";
+  var i = 0, done = false;
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+  function render(n) {
+    var q = Q[n]; if (!q) return;
+    done = false;
+    card.querySelector(".qtag").textContent = q.tag;
+    card.querySelector("h3").innerHTML = q.q;
+    card.querySelector(".opts").innerHTML = q.a.map(function (a, k) {
+      return '<button class="opt" type="button" data-k="' + k + '"><b>' + L[k] + "</b><span>" + a + "</span></button>";
+    }).join("");
+    var r = card.querySelector(".res"); r.className = "res"; r.innerHTML = "";
+  }
+  card.addEventListener("click", function (e) {
+    var b = e.target.closest ? e.target.closest(".opt") : null;
+    if (b && !done) {
+      done = true;
+      var q = Q[i], k = +b.getAttribute("data-k"), ok = k === q.c;
+      [].forEach.call(card.querySelectorAll(".opt"), function (o) {
+        var j = +o.getAttribute("data-k");
+        o.disabled = true;
+        o.classList.add(j === q.c ? "right" : (j === k ? "wrong" : "dim"));
+      });
+      var r = card.querySelector(".res");
+      r.className = "res on " + (ok ? "good" : "bad");
+      r.innerHTML = "<strong>" + (ok ? "Correct" : "Not quite") + "</strong>" + (ok ? "" : "The answer is " + L[q.c] + ". " + q.a[q.c] + ". ") + q.why + (q.cite ? '<span class="cite">' + esc(q.cite) + "</span>" : "");
+      r.setAttribute("tabindex", "-1");
+      return;
+    }
+    if (e.target.closest && e.target.closest("[data-next]")) {
+      i = (i + 1) % Q.length;
+      render(i);
+      var f = card.querySelector(".opt"); if (f) f.focus();
+    }
+  });
+})();
+</script>
+</div>
+</div></section>
+<section class="stats" aria-label="This course in numbers"><div class="wrap"><ul><li style="--sc:var(--maroon)"><b>755</b><span>exam-style questions in Exam Prep HQ</span></li><li style="--sc:var(--teal)"><b>86</b><span>interactive lessons</span></li><li style="--sc:var(--gold)"><b>108</b><span>Medical Mystery cases</span></li><li style="--sc:var(--maroon)"><b>13</b><span>book chapters</span></li><li style="--sc:var(--teal)"><b>13</b><span>podcast episodes</span></li><li style="--sc:var(--gold)"><b>7</b><span>exam study guides</span></li></ul></div></section>
+<section class="sec" id="tools" aria-labelledby="tools-h"><div class="wrap">
+<div class="head"><div><span class="eyebrow">Study tools</span><h2 id="tools-h">Learn it, see it, play it</h2><p>Each card shows the tool in action. Every tool covers the same material a different way.</p><p class="swipe">Swipe for more.</p></div>
+<div class="railbtns" data-rail="rail-tools"><button type="button" data-dir="prev" aria-label="Scroll Learn it, see it, play it left"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button><button type="button" data-dir="next" aria-label="Scroll Learn it, see it, play it right"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button></div></div>
+<ul class="rail" id="rail-tools"><li><a class="tcard" href="exam-suite/index.html"><div class="media"><span class="tag gold">New</span><img src="assets/previews/examprep.jpg" alt="Exam simulator with a question answered" width="480" height="640" loading="lazy" decoding="async"><video muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" poster="assets/previews/examprep.jpg" data-src="assets/previews/examprep.mp4" data-webm="assets/previews/examprep.webm"></video></div><div class="tbody"><h3>Exam Prep HQ</h3><p>Timed simulator, ABG trainer, lab signature and red flag drills, and a cram sheet, for every exam.</p><span class="go">Open <span aria-hidden="true">&rarr;</span></span></div></a></li><li><a class="tcard" href="https://kashee12345.github.io/bio280-book/games/the-chase.html"><div class="media"><span class="tag gold">Main</span><img src="assets/previews/chase.jpg" alt="The Chase: the Infarct boss takes a hit" width="480" height="640" loading="lazy" decoding="async"><video muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" poster="assets/previews/chase.jpg" data-src="assets/previews/chase.mp4" data-webm="assets/previews/chase.webm"></video></div><div class="tbody"><h3>The Chase</h3><p>Outrun the Quiz-Bot across hundreds of NCLEX-style questions.</p><span class="go">Play <span aria-hidden="true">&rarr;</span></span></div></a></li><li><a class="tcard" href="https://kashee12345.github.io/bio280-book/games/pathoquest.html"><div class="media"><img src="assets/previews/pathoquest.jpg" alt="PathoQuest title screen and champion select" width="480" height="640" loading="lazy" decoding="async"><video muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" poster="assets/previews/pathoquest.jpg" data-src="assets/previews/pathoquest.mp4" data-webm="assets/previews/pathoquest.webm"></video></div><div class="tbody"><h3>PathoQuest</h3><p>A pixel art RPG. Battle a disease boss in every body system.</p><span class="go">Play <span aria-hidden="true">&rarr;</span></span></div></a></li><li><a class="tcard" href="https://kashee12345.github.io/bio280-book/games/medical-mystery.html"><div class="media"><img src="assets/previews/mystery.jpg" alt="Medical Mystery: a patient&#x27;s opening words" width="480" height="640" loading="lazy" decoding="async"><video muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" poster="assets/previews/mystery.jpg" data-src="assets/previews/mystery.mp4" data-webm="assets/previews/mystery.webm"></video></div><div class="tbody"><h3>Medical Mystery</h3><p>Work a real case inside an EHR and prove the pathophysiology.</p><span class="go">Play <span aria-hidden="true">&rarr;</span></span></div></a></li><li><a class="tcard" href="https://kashee12345.github.io/bio280-book/"><div class="media"><img src="assets/previews/book.jpg" alt="The Book: cardiovascular chapter with a live heart lab" width="480" height="640" loading="lazy" decoding="async"><video muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" poster="assets/previews/book.jpg" data-src="assets/previews/book.mp4" data-webm="assets/previews/book.webm"></video></div><div class="tbody"><h3>The Book</h3><p>An interactive pathophysiology book. Chapters with figures, tables and embedded labs.</p><span class="go">Open <span aria-hidden="true">&rarr;</span></span></div></a></li><li><a class="tcard" href="interactive-body.html"><div class="media"><img src="assets/previews/body.jpg" alt="Sepsis lesson: vital signs worsen toward septic shock" width="480" height="640" loading="lazy" decoding="async"><video muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" poster="assets/previews/body.jpg" data-src="assets/previews/body.mp4" data-webm="assets/previews/body.webm"></video></div><div class="tbody"><h3>The Interactive Body</h3><p>86 hands-on animated lessons plus ABG and Punnett calculators.</p><span class="go">Open <span aria-hidden="true">&rarr;</span></span></div></a></li><li><a class="tcard" href="lessons.html"><div class="media"><img src="assets/previews/lessons.jpg" alt="Lesson Library cards by body system" width="480" height="640" loading="lazy" decoding="async"><video muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" poster="assets/previews/lessons.jpg" data-src="assets/previews/lessons.mp4" data-webm="assets/previews/lessons.webm"></video></div><div class="tbody"><h3>Lesson Library</h3><p>Browse every interactive lesson by system and topic.</p><span class="go">Open <span aria-hidden="true">&rarr;</span></span></div></a></li></ul>
+</div></section>
+<section class="sec alt" id="path" aria-labelledby="path-h"><div class="wrap">
+<div class="head"><div><span class="eyebrow">By week</span><h2 id="path-h">This week</h2><p>Everything for one week in a single row: the podcast, the interactive book, the flipbook, flashcards, the book chapter, the Chase round and that week's interactive lessons.</p></div></div>
+<div class="chips" role="group" aria-label="Choose a week" id="chips"></div>
+<div class="panel" id="wpanel" aria-live="polite"><noscript>Open <a href="weeks.html">the course week by week</a>.</noscript></div>
+<details class="allweeks"><summary>All 14 weeks at a glance</summary><div class="wk-list" id="allweeks"></div></details>
+</div></section>
+<section class="sec" id="exams" aria-labelledby="exams-h"><div class="wrap">
+<div class="head"><div><span class="eyebrow">By exam</span><h2 id="exams-h">Getting ready for an exam</h2><p>Each exam has its KCR review, the PathoParty questions, a study guide to read or download, a drill in Exam Prep HQ and a Chase round.</p></div></div>
+<div class="exams g6" id="examcards"></div>
+</div></section>
+<section class="sec alt" id="howto" aria-label="How to use this hub"><div class="wrap">
+<details class="usehub">
+    <summary><span>📖</span> New here? How to use this hub<span class="uh-hint"> — what each tool is and a study routine</span><span class="chev">›</span></summary>
+    <div class="uh-body">
+      <div class="sl" style="margin-top:12px;">Guide to the Tools</div>
+      <p class="gintro">Every tool covers the same material a different way — mix and match to whatever helps it stick.</p>
+      <div class="guide">
+        <div class="tool"><div class="tico">🎧</div><div>
+          <h4>Podcasts <span class="where">on Spotify</span></h4>
+          <p>Short audio episodes that talk through each week's big ideas. Put one on in the car or at the gym — ideal for absorbing material hands-free and for a refresher right before an exam.</p>
+        </div></div>
+        <div class="tool"><div class="tico">📚</div><div>
+          <h4>Interactive Books <span class="where">on H5P</span></h4>
+          <p>More than reading — questions, clickable images, and activities built in, checking your understanding as you go. Move at your own pace and redo any section.</p>
+        </div></div>
+        <div class="tool"><div class="tico">🎨</div><div>
+          <h4>Flipbooks <span class="where">illustrated</span></h4>
+          <p>Page-turning illustrated workbooks that turn dense pathophysiology into clear pictures and step-by-step diagrams. Best if you learn by <em>seeing</em> a process laid out.</p>
+        </div></div>
+        <div class="tool"><div class="tico">🃏</div><div>
+          <h4>Flashcards <span class="where">on Quizlet</span></h4>
+          <p>A deck for every week, embedded right in the page. Fastest way to drill terms and mechanisms — use Learn and Test modes on Quizlet for spaced repetition.</p>
+        </div></div>
+        <div class="tool"><div class="tico">📝</div><div>
+          <h4>Exam Study Guides <span class="where">view &amp; PDF</span></h4>
+          <p>A complete review for each exam — concepts organised with mechanisms, why-it-matters notes, exam tips, and practice questions. Read in your browser or download the PDF.</p>
+        </div></div>
+        <div class="tool"><div class="tico">📄</div><div>
+          <h4>KCR Exam Reviews <span class="where">Google Docs</span></h4>
+          <p>Key Concept Review documents for each exam — the concise list of what you are responsible for. Use them as your checklist when you think you're finished studying.</p>
+        </div></div>
+        <div class="tool"><div class="tico">🎉</div><div>
+          <h4>PathoParty Questions <span class="where">Google Slides</span></h4>
+          <p>The in-class review question sets. Run them again on your own, or with a study group, to pressure-test what you actually know before exam day.</p>
+        </div></div>
+        <div class="tool"><div class="tico">🎓</div><div>
+          <h4>Exam Prep HQ <span class="where">in-hub</span></h4>
+          <p>Your exam-prep command centre, covering all six unit exams and the cumulative final. Each has a timed and scored <b>exam simulator</b> drawing on the 755-question course bank, an <b>ABG trainer</b> that generates a fresh blood gas every time, and rapid drills for <b>lab signatures</b>, easily-confused <b>look-alike pairs</b>, <b>act-now red flags</b>, and <b>mechanism chains</b> &mdash; plus a printable cram sheet. A readiness dashboard tracks your accuracy exam by exam and names the one to study first.</p>
+        </div></div>
+
+        <div class="tool"><div class="tico">🫀</div><div>
+          <h4>The Interactive Body <span class="where">in-hub</span></h4>
+          <p>Ninety hands-on animated lessons — click, drag, and toggle to watch each mechanism unfold, plus live ABG and Punnett-square calculators.</p>
+        </div></div>
+        <div class="tool"><div class="tico">📖</div><div>
+          <h4>The Book <span class="where">separate site</span></h4>
+          <p>A full interactive pathophysiology textbook for this course, with figures, comparison tables, clinical pearls, glossaries, quizzes, and the interactive labs embedded in context.</p>
+        </div></div>
+        <div class="tool"><div class="tico">🎮</div><div>
+          <h4>The Games <span class="where">in-hub</span></h4>
+          <p><b>The Chase</b> is a quiz-show race; <b>PathoQuest</b> is an RPG where each body system is a boss; <b>Medical Mystery</b> puts you in an EHR to diagnose a real case. All three teach with full rationales.</p>
+        </div></div>
+      </div>
+
+      <div class="flow">
+        <h4>📈 A simple way to study each week</h4>
+        <ol>
+          <li>Meet the concepts with the <b>Interactive Book</b>.</li>
+          <li>Hear them explained another way with the <b>Podcast</b>.</li>
+          <li>See the visuals in the <b>Flipbook</b>.</li>
+          <li>Watch the mechanism move in <b>The Interactive Body</b>.</li>
+          <li>Drill the terms with the week's <b>Flashcards</b>.</li>
+          <li>Lock it in by playing <b>The Chase</b> and <b>PathoQuest</b>.</li>
+        </ol>
+      </div>
+
+      <div class="flow">
+        <h4>🎓 When an exam is coming</h4>
+        <ol>
+          <li>Open the exam below and read the <b>KCR Review</b> — that's your checklist.</li>
+          <li>Work the <b>Study Guide</b> for anything on the checklist you're shaky on.</li>
+          <li>Run the <b>PathoParty Questions</b> as a self-test, ideally with a study group.</li>
+          <li>Re-drill the weakest week's <b>Flashcards</b>.</li>
+          <li>Open <b>Exam Prep HQ</b>, run the simulator cold, and let the readiness dashboard name your weakest exam.</li>
+          <li>The night before, read that exam's <b>Cram Sheet</b> and replay <b>The Chase</b>.</li>
+        </ol>
+      </div>
+    </div>
+  </details>
+</div></section>
+</main>
+<footer class="foot"><div class="wrap">
+<div><a class="logo" href="index.html"><span class="crest" aria-hidden="true">&#9877;&#65039;</span><span><b>BIO 280</b><small>Pathophysiology</small></span></a>
+<p class="who"><b>BIO 280 · Pathophysiology</b><br>Joyce University · Nursing &amp; Health Sciences<br>Dr. Akash Garg</p></div>
+<div><h2>Study tools</h2><ul><li><a href="exam-suite/index.html">Exam Prep HQ</a></li><li><a href="interactive-body.html">The Interactive Body</a></li><li><a href="lessons.html">Lesson Library</a></li><li><a href="weeks.html">Lessons by week</a></li><li><a href="https://kashee12345.github.io/bio280-book/">The Book</a></li></ul></div>
+<div><h2>Games</h2><ul><li><a href="https://kashee12345.github.io/bio280-book/games/the-chase.html">The Chase</a></li><li><a href="https://kashee12345.github.io/bio280-book/games/pathoquest.html">PathoQuest</a></li><li><a href="https://kashee12345.github.io/bio280-book/games/medical-mystery.html">Medical Mystery</a></li></ul></div>
+<div><h2>This hub</h2><ul><li><a href="#path">This week</a></li><li><a href="#exams">Exams</a></li><li><a href="#howto">How to use this hub</a></li><li><a href="about.html">About the Interactive Body</a></li></ul></div>
+<p class="fine">Optional study extras for BIO 280. Required coursework, readings and lecture slides are in Canvas.</p>
+</div></footer>
+<script>window.HUB_INDEX=[{"c": "Tool", "t": "Exam Prep HQ", "u": "exam-suite/index.html", "s": "Timed simulator, ABG trainer, drills and cram sheets", "k": "exam practice simulator", "w": 3}, {"c": "Tool", "t": "The Chase", "u": "https://kashee12345.github.io/bio280-book/games/the-chase.html", "s": "Quiz show race across the course questions", "k": "game review", "w": 3}, {"c": "Tool", "t": "PathoQuest", "u": "https://kashee12345.github.io/bio280-book/games/pathoquest.html", "s": "Pixel art RPG with a disease boss in every body system", "k": "game rpg", "w": 3}, {"c": "Tool", "t": "Medical Mystery", "u": "https://kashee12345.github.io/bio280-book/games/medical-mystery.html", "s": "108 cases inside an EHR", "k": "game case ehr", "w": 3}, {"c": "Tool", "t": "The Book", "u": "https://kashee12345.github.io/bio280-book/", "s": "13 chapters with figures, tables and embedded labs", "k": "textbook reading", "w": 3}, {"c": "Tool", "t": "The Interactive Body", "u": "interactive-body.html", "s": "86 hands-on animated lessons", "k": "lessons", "w": 3}, {"c": "Tool", "t": "Lesson Library", "u": "lessons.html", "s": "Every interactive lesson by system and topic", "k": "lessons", "w": 3}, {"c": "Tool", "t": "Lessons by week", "u": "weeks.html", "s": "Which interactive lessons go with each week", "k": "weeks", "w": 2}, {"c": "Lesson", "t": "ABG Interpreter", "u": "ABGInterpreter.html", "s": "Week 1 · Fluids, Electrolytes & ABGs", "k": "Fluids, Electrolytes & ABGs", "w": 0, "a": "ABGInterpreter"}, {"c": "Lesson", "t": "ADH Disorders (SIADH/DI)", "u": "ADHDisorders.html", "s": "Week 8 · Endocrine", "k": "Endocrine", "w": 0, "a": "ADHDisorders"}, {"c": "Lesson", "t": "Acute Kidney Injury", "u": "AKILocalizer.html", "s": "Week 11 · Renal & Urinary", "k": "Renal & Urinary", "w": 0, "a": "AKILocalizer"}, {"c": "Lesson", "t": "Acute Abdomen", "u": "AcuteAbdomen.html", "s": "Week 13 · Gastrointestinal", "k": "Gastrointestinal", "w": 0, "a": "Acute Abdomen"}, {"c": "Lesson", "t": "Adrenal Disorders", "u": "AdrenalDisorders.html", "s": "Week 8 · Endocrine", "k": "Endocrine", "w": 0, "a": "Adrenal Disorders"}, {"c": "Lesson", "t": "Airway Infections Map", "u": "AirwayInfections.html", "s": "Week 12 · Respiratory", "k": "Respiratory", "w": 0, "a": "Airway Infections"}, {"c": "Lesson", "t": "Alveoli Under Attack", "u": "AlveoliAttack.html", "s": "Week 12 · Respiratory", "k": "Respiratory", "w": 0, "a": "Alveoli Attack"}, {"c": "Lesson", "t": "Anemia Explorer", "u": "AnemiaExplorer.html", "s": "Week 9 · Blood Disorders & Cardiovascular I", "k": "Blood Disorders & Cardiovascular I", "w": 0, "a": "Anemia Explorer"}, {"c": "Lesson", "t": "Asthma", "u": "Asthma.html", "s": "Week 12 · Respiratory", "k": "Respiratory", "w": 0, "a": "Asthma"}, {"c": "Lesson", "t": "Autoimmune & Inflammatory", "u": "AutoimmuneInflammatory.html", "s": "Week 4 · Sepsis, Pain, Healing & Neuro", "k": "Sepsis, Pain, Healing & Neuro", "w": 0, "a": "Autoimmune Inflammatory"}, {"c": "Lesson", "t": "Bilirubin & Liver Signs", "u": "Bilirubin.html", "s": "Week 14 · Liver, Biliary & Reproductive", "k": "Liver, Biliary & Reproductive", "w": 0, "a": "Bilirubin"}, {"c": "Lesson", "t": "Bleeding & Clotting", "u": "BleedingClotting.html", "s": "Week 9 · Blood Disorders & Cardiovascular I", "k": "Blood Disorders & Cardiovascular I", "w": 0, "a": "Bleeding Clotting"}, {"c": "Lesson", "t": "Blood Cancers", "u": "BloodCancers.html", "s": "Week 2 · Pathogens & Immune Disorders", "k": "Pathogens & Immune Disorders", "w": 0, "a": "Blood Cancers"}, {"c": "Lesson", "t": "Blood Pressure & Cardiac Output", "u": "BloodPressure.html", "s": "Week 9 · Blood Disorders & Cardiovascular I", "k": "Blood Disorders & Cardiovascular I", "w": 0, "a": "Blood Pressure"}, {"c": "Lesson", "t": "Blood Types & Transfusion", "u": "BloodTypes.html", "s": "Week 9 · Blood Disorders & Cardiovascular I", "k": "Blood Disorders & Cardiovascular I", "w": 0, "a": "Blood Types"}, {"c": "Lesson", "t": "Bowel Obstruction", "u": "BowelObstruction.html", "s": "Week 13 · Gastrointestinal", "k": "Gastrointestinal", "w": 0, "a": "Bowel Obstruction"}, {"c": "Lesson", "t": "Buffer Systems", "u": "BufferSystems.html", "s": "Week 1 · Fluids, Electrolytes & ABGs", "k": "Fluids, Electrolytes & ABGs", "w": 0, "a": "Buffer Systems"}, {"c": "Lesson", "t": "Burns", "u": "Burns.html", "s": "Week 6 · MSK, Skin & Burns", "k": "MSK, Skin & Burns", "w": 0, "a": "Burns"}, {"c": "Lesson", "t": "Chronic Kidney Disease", "u": "CKD.html", "s": "Week 11 · Renal & Urinary", "k": "Renal & Urinary", "w": 0, "a": "CKD"}, {"c": "Lesson", "t": "Other Neuro Disorders", "u": "CNSInfections.html", "s": "Week 5 · Mental Health & Neurological", "k": "Mental Health & Neurological", "w": 0, "a": "CNSInfections"}, {"c": "Lesson", "t": "COPD", "u": "COPD.html", "s": "Week 12 · Respiratory", "k": "Respiratory", "w": 0, "a": "COPD"}, {"c": "Lesson", "t": "Cancer", "u": "Cancer.html", "s": "Week 3 · Cell Injury, Cancer & Inflammation", "k": "Cell Injury, Cancer & Inflammation", "w": 0, "a": "Cancer"}, {"c": "Lesson", "t": "Cardiac Tamponade", "u": "CardiacTamponade.html", "s": "Week 10 · Cardiovascular II", "k": "Cardiovascular II", "w": 0, "a": "Cardiac Tamponade"}, {"c": "Lesson", "t": "Cellular Adaptation", "u": "CellularAdaptation.html", "s": "Week 3 · Cell Injury, Cancer & Inflammation", "k": "Cell Injury, Cancer & Inflammation", "w": 0, "a": "Cellular Adaptation"}, {"c": "Lesson", "t": "Chest Trauma", "u": "ChestTrauma.html", "s": "Week 12 · Respiratory", "k": "Respiratory", "w": 0, "a": "Chest Trauma"}, {"c": "Lesson", "t": "Chromosomal Disorders", "u": "ChromosomalDisorders.html", "s": "Week 7 · Genetics", "k": "Genetics", "w": 0, "a": "Chromosomal Disorders"}, {"c": "Lesson", "t": "Congenital Heart Defects", "u": "CongenitalShunts.html", "s": "Week 10 · Cardiovascular II", "k": "Cardiovascular II", "w": 0, "a": "Congenital Shunts"}, {"c": "Lesson", "t": "Coronary Artery Disease (3D)", "u": "CoronaryQuest3D.html", "s": "Week 10 · Cardiovascular II", "k": "Cardiovascular II", "w": 0, "a": "Coronary Quest3D"}, {"c": "Lesson", "t": "DNA → Chromosome", "u": "DNAtoChromosome.html", "s": "Week 7 · Genetics", "k": "Genetics", "w": 0, "a": "DNAto Chromosome"}, {"c": "Lesson", "t": "Diabetes Mellitus", "u": "Diabetes.html", "s": "Week 8 · Endocrine", "k": "Endocrine", "w": 0, "a": "Diabetes"}, {"c": "Lesson", "t": "EKG Reader", "u": "EKGReader.html", "s": "Week 9 · Blood Disorders & Cardiovascular I", "k": "Blood Disorders & Cardiovascular I", "w": 0, "a": "EKGReader"}, {"c": "Lesson", "t": "Edema — Hydrostatic vs Oncotic", "u": "Edema.html", "s": "Week 1 · Fluids, Electrolytes & ABGs", "k": "Fluids, Electrolytes & ABGs", "w": 0, "a": "Edema"}, {"c": "Lesson", "t": "Electrolytes", "u": "Electrolytes.html", "s": "Week 1 · Fluids, Electrolytes & ABGs", "k": "Fluids, Electrolytes & ABGs", "w": 0, "a": "Electrolytes"}, {"c": "Lesson", "t": "Endocrine Command Center", "u": "EndocrinePituitary.html", "s": "Week 8 · Endocrine", "k": "Endocrine", "w": 0, "a": "Endocrine Pituitary"}, {"c": "Lesson", "t": "Female Reproductive Disorders", "u": "FemaleRepro.html", "s": "Week 14 · Liver, Biliary & Reproductive", "k": "Liver, Biliary & Reproductive", "w": 0, "a": "Female Repro"}, {"c": "Lesson", "t": "Fluid Compartments", "u": "FluidCompartments.html", "s": "Week 1 · Fluids, Electrolytes & ABGs", "k": "Fluids, Electrolytes & ABGs", "w": 0, "a": "Fluid Compartments"}, {"c": "Lesson", "t": "Fluid Regulation Hormones", "u": "FluidHormones.html", "s": "Week 1 · Fluids, Electrolytes & ABGs", "k": "Fluids, Electrolytes & ABGs", "w": 0, "a": "Fluid Hormones"}, {"c": "Lesson", "t": "Fractures & the 5 P's", "u": "FractureCare.html", "s": "Week 6 · MSK, Skin & Burns", "k": "MSK, Skin & Burns", "w": 0, "a": "Fracture Care"}, {"c": "Lesson", "t": "Fracture Complications", "u": "FractureComplications.html", "s": "Week 6 · MSK, Skin & Burns", "k": "MSK, Skin & Burns", "w": 0, "a": "Fracture Complications"}, {"c": "Lesson", "t": "GERD & the Esophagus", "u": "GERD.html", "s": "Week 13 · Gastrointestinal", "k": "Gastrointestinal", "w": 0, "a": "GERD"}, {"c": "Lesson", "t": "GI Bleed Localizer", "u": "GIBleed.html", "s": "Week 13 · Gastrointestinal", "k": "Gastrointestinal", "w": 0, "a": "GIBleed"}, {"c": "Lesson", "t": "Gallstones & the Biliary Tree", "u": "Gallstones.html", "s": "Week 14 · Liver, Biliary & Reproductive", "k": "Liver, Biliary & Reproductive", "w": 0, "a": "Gallstones"}, {"c": "Lesson", "t": "Growth Hormone Disorders", "u": "GrowthHormone.html", "s": "Week 8 · Endocrine", "k": "Endocrine", "w": 0, "a": "Growth Hormone"}, {"c": "Lesson", "t": "Head Trauma & Brain Bleeds", "u": "HeadTrauma.html", "s": "Week 5 · Mental Health & Neurological", "k": "Mental Health & Neurological", "w": 0, "a": "Head Trauma"}, {"c": "Lesson", "t": "Heart Failure", "u": "HeartFailure.html", "s": "Week 10 · Cardiovascular II", "k": "Cardiovascular II", "w": 0, "a": "Heart Failure"}, {"c": "Lesson", "t": "Heart Infection & Inflammation", "u": "HeartInfections.html", "s": "Week 10 · Cardiovascular II", "k": "Cardiovascular II", "w": 0, "a": "Heart Infections"}, {"c": "Lesson", "t": "Hypersensitivity Reactions", "u": "Hypersensitivity.html", "s": "Week 2 · Pathogens & Immune Disorders", "k": "Pathogens & Immune Disorders", "w": 0, "a": "Hypersensitivity"}, {"c": "Lesson", "t": "Crohn's vs Ulcerative Colitis", "u": "IBD.html", "s": "Week 13 · Gastrointestinal", "k": "Gastrointestinal", "w": 0, "a": "IBD"}, {"c": "Lesson", "t": "Three Lines of Defense", "u": "ImmuneDefense.html", "s": "Week 2 · Pathogens & Immune Disorders", "k": "Pathogens & Immune Disorders", "w": 0, "a": "Immune Defense"}, {"c": "Lesson", "t": "Immunoglobulins (GAMED)", "u": "Immunoglobulins.html", "s": "Week 2 · Pathogens & Immune Disorders", "k": "Pathogens & Immune Disorders", "w": 0, "a": "Immunoglobulins"}, {"c": "Lesson", "t": "Inflammation", "u": "Inflammation.html", "s": "Week 3 · Cell Injury, Cancer & Inflammation", "k": "Cell Injury, Cancer & Inflammation", "w": 0, "a": "Inflammation"}, {"c": "Lesson", "t": "Inheritance Patterns", "u": "InheritancePatterns.html", "s": "Week 7 · Genetics", "k": "Genetics", "w": 0, "a": "Inheritance Patterns"}, {"c": "Lesson", "t": "Intracranial Pressure", "u": "IntracranialPressure.html", "s": "Week 5 · Mental Health & Neurological", "k": "Mental Health & Neurological", "w": 0, "a": "Intracranial Pressure"}, {"c": "Lesson", "t": "Kidney Stones & Obstruction", "u": "KidneyStones.html", "s": "Week 11 · Renal & Urinary", "k": "Renal & Urinary", "w": 0, "a": "Kidney Stones"}, {"c": "Lesson", "t": "Stages of Liver Disease", "u": "LiverStages.html", "s": "Week 14 · Liver, Biliary & Reproductive", "k": "Liver, Biliary & Reproductive", "w": 0, "a": "Liver Stages"}, {"c": "Lesson", "t": "Lung Sounds", "u": "LungSounds.html", "s": "Week 12 · Respiratory", "k": "Respiratory", "w": 0, "a": "Lung Sounds"}, {"c": "Lesson", "t": "Musculoskeletal Disorders", "u": "MSKDisorders.html", "s": "Week 6 · MSK, Skin & Burns", "k": "MSK, Skin & Burns", "w": 0, "a": "MSKDisorders"}, {"c": "Lesson", "t": "Malabsorption", "u": "Malabsorption.html", "s": "Week 13 · Gastrointestinal", "k": "Gastrointestinal", "w": 0, "a": "Malabsorption"}, {"c": "Lesson", "t": "Male Reproductive Disorders", "u": "MaleRepro.html", "s": "Week 14 · Liver, Biliary & Reproductive", "k": "Liver, Biliary & Reproductive", "w": 0, "a": "Male Repro"}, {"c": "Lesson", "t": "Mental Health Disorders", "u": "MentalHealth.html", "s": "Week 5 · Mental Health & Neurological", "k": "Mental Health & Neurological", "w": 0, "a": "Mental Health"}, {"c": "Lesson", "t": "Mitosis vs Meiosis", "u": "MitosisMeiosis.html", "s": "Week 7 · Genetics", "k": "Genetics", "w": 0, "a": "Mitosis Meiosis"}, {"c": "Lesson", "t": "Nephron Explorer", "u": "NephronExplorer.html", "s": "Week 11 · Renal & Urinary", "k": "Renal & Urinary", "w": 0, "a": "Nephron Explorer"}, {"c": "Lesson", "t": "Nephrotic vs Nephritic", "u": "NephroticNephritic.html", "s": "Week 11 · Renal & Urinary", "k": "Renal & Urinary", "w": 0, "a": "Nephrotic Nephritic"}, {"c": "Lesson", "t": "Neurodegenerative Diseases", "u": "Neurodegenerative.html", "s": "Week 4 · Sepsis, Pain, Healing & Neuro", "k": "Sepsis, Pain, Healing & Neuro", "w": 0, "a": "Neurodegenerative"}, {"c": "Lesson", "t": "Neuromuscular Junction", "u": "NeuromuscularJunction.html", "s": "Week 4 · Sepsis, Pain, Healing & Neuro", "k": "Sepsis, Pain, Healing & Neuro", "w": 0, "a": "Neuromuscular Junction"}, {"c": "Lesson", "t": "The Pain Pathway", "u": "PainPathway.html", "s": "Week 4 · Sepsis, Pain, Healing & Neuro", "k": "Sepsis, Pain, Healing & Neuro", "w": 0, "a": "Pain Pathway"}, {"c": "Lesson", "t": "Pancreatitis", "u": "Pancreatitis.html", "s": "Week 14 · Liver, Biliary & Reproductive", "k": "Liver, Biliary & Reproductive", "w": 0, "a": "Pancreatitis"}, {"c": "Lesson", "t": "Pathogen Types", "u": "PathogenTypes.html", "s": "Week 2 · Pathogens & Immune Disorders", "k": "Pathogens & Immune Disorders", "w": 0, "a": "Pathogen Types"}, {"c": "Lesson", "t": "Peptic Ulcers & Gastritis", "u": "PepticUlcer.html", "s": "Week 13 · Gastrointestinal", "k": "Gastrointestinal", "w": 0, "a": "Peptic Ulcer"}, {"c": "Lesson", "t": "Peripheral Vascular Disease", "u": "PeripheralVascular.html", "s": "Week 9 · Blood Disorders & Cardiovascular I", "k": "Blood Disorders & Cardiovascular I", "w": 0, "a": "Peripheral Vascular"}, {"c": "Lesson", "t": "Pulmonary Embolism", "u": "PulmonaryEmbolism.html", "s": "Week 12 · Respiratory", "k": "Respiratory", "w": 0, "a": "Pulmonary Embolism"}, {"c": "Lesson", "t": "Punnett Square Calculator", "u": "PunnettSquare.html", "s": "Week 7 · Genetics", "k": "Genetics", "w": 0, "a": "Punnett Square"}, {"c": "Lesson", "t": "Ventilation, Perfusion & V/Q", "u": "RespirationVQ.html", "s": "Week 12 · Respiratory", "k": "Respiratory", "w": 0, "a": "Respiration VQ"}, {"c": "Lesson", "t": "Road to Right Heart Failure", "u": "RightHeartChain.html", "s": "Week 12 · Respiratory", "k": "Respiratory", "w": 0, "a": "Right Heart Chain"}, {"c": "Lesson", "t": "SIRS → Septic Shock", "u": "Sepsis.html", "s": "Week 4 · Sepsis, Pain, Healing & Neuro", "k": "Sepsis, Pain, Healing & Neuro", "w": 0, "a": "Sepsis"}, {"c": "Lesson", "t": "Skin Conditions", "u": "SkinConditions.html", "s": "Week 6 · MSK, Skin & Burns", "k": "MSK, Skin & Burns", "w": 0, "a": "Skin Conditions"}, {"c": "Lesson", "t": "Skin Infections", "u": "SkinInfections.html", "s": "Week 6 · MSK, Skin & Burns", "k": "MSK, Skin & Burns", "w": 0, "a": "Skin Infections"}, {"c": "Lesson", "t": "Spinal Cord Injury", "u": "SpinalCord.html", "s": "Week 5 · Mental Health & Neurological", "k": "Mental Health & Neurological", "w": 0, "a": "Spinal Cord"}, {"c": "Lesson", "t": "Stroke (CVA)", "u": "Stroke.html", "s": "Week 5 · Mental Health & Neurological", "k": "Mental Health & Neurological", "w": 0, "a": "Stroke"}, {"c": "Lesson", "t": "Teratogens & Concepts", "u": "Teratogens.html", "s": "Week 7 · Genetics", "k": "Genetics", "w": 0, "a": "Teratogens"}, {"c": "Lesson", "t": "Thyroid Disorders", "u": "ThyroidDisorders.html", "s": "Week 8 · Endocrine", "k": "Endocrine", "w": 0, "a": "Thyroid Disorders"}, {"c": "Lesson", "t": "Urinary Tract Infection", "u": "UTI.html", "s": "Week 11 · Renal & Urinary", "k": "Renal & Urinary", "w": 0, "a": "UTI"}, {"c": "Lesson", "t": "Urinary Incontinence", "u": "UrinaryIncontinence.html", "s": "Week 11 · Renal & Urinary", "k": "Renal & Urinary", "w": 0, "a": "Urinary Incontinence"}, {"c": "Lesson", "t": "Heart Valve Disorders", "u": "ValveDisorders.html", "s": "Week 10 · Cardiovascular II", "k": "Cardiovascular II", "w": 0, "a": "Valve Disorders"}, {"c": "Lesson", "t": "Viral Replication", "u": "ViralReplication.html", "s": "Week 2 · Pathogens & Immune Disorders", "k": "Pathogens & Immune Disorders", "w": 0, "a": "Viral Replication"}, {"c": "Lesson", "t": "Wound Healing", "u": "WoundHealing.html", "s": "Week 4 · Sepsis, Pain, Healing & Neuro", "k": "Sepsis, Pain, Healing & Neuro", "w": 0, "a": "Wound Healing"}, {"c": "Week", "t": "Week 1: Acids & Bases · Fluids & Electrolytes", "u": "#w1", "s": "Podcast, book, flipbook, flashcards and lessons", "k": "Fluid compartments, edema, RAAS/ADH/ANP, electrolytes, buffers & blood-gas interpretation.", "w": 2}, {"c": "Week", "t": "Week 2: Pathogens & Immunity", "u": "#w2", "s": "Podcast, book, flipbook, flashcards and lessons", "k": "Bacteria/virus/fungi/parasites, viral replication, the immune defenses, antibodies & hypersensitivity.", "w": 2}, {"c": "Week", "t": "Week 3: Cancer & Cellular Injury", "u": "#w3", "s": "Podcast, book, flipbook, flashcards and lessons", "k": "Cellular adaptation & injury, benign vs malignant, and the inflammatory response.", "w": 2}, {"c": "Week", "t": "Week 4: Inflammation & Inflammatory Disorders", "u": "#w4", "s": "Podcast, book, flipbook, flashcards and lessons", "k": "SIRS→septic shock, wound healing, the pain pathway, autoimmune & neurodegenerative disease.", "w": 2}, {"c": "Week", "t": "Week 5: Neurology & Mental Health", "u": "#w5", "s": "Podcast, book, flipbook, flashcards and lessons", "k": "Mental-health disorders, ICP, stroke, head trauma, spinal cord injury & CNS conditions.", "w": 2}, {"c": "Week", "t": "Week 6: Musculoskeletal & Skin Disorders", "u": "#w6", "s": "Podcast, book, flipbook, flashcards and lessons", "k": "Fractures & the 5 P's, fracture complications, bone/joint disorders, skin conditions & burns.", "w": 2}, {"c": "Week", "t": "Week 7: Genetics", "u": "#w7", "s": "Podcast, book, flipbook, flashcards and lessons", "k": "DNA packaging, mitosis vs meiosis, chromosomal disorders, inheritance patterns & Punnett squares.", "w": 2}, {"c": "Week", "t": "Week 8: Endocrine", "u": "#w8", "s": "Podcast, book, flipbook, flashcards and lessons", "k": "Hypothalamus/pituitary axis, adrenal & thyroid disorders, diabetes, growth hormone & ADH.", "w": 2}, {"c": "Week", "t": "Week 9: Blood Disorders & Cardiovascular I", "u": "#w9", "s": "Podcast, book, flipbook, flashcards and lessons", "k": "Anemias, EKG, hemostasis, blood types, blood pressure & peripheral vascular disease.", "w": 2}, {"c": "Week", "t": "Week 10: Cardiovascular II", "u": "#w10", "s": "Podcast, book, flipbook, flashcards and lessons", "k": "Coronary artery disease & MI, heart failure, valves, congenital defects, tamponade & infections.", "w": 2}, {"c": "Week", "t": "Week 11: Renal Disorders", "u": "#w11", "s": "Podcast, book, flipbook, flashcards and lessons", "k": "The nephron, nephrotic vs nephritic, AKI, CKD, stones, incontinence & UTIs.", "w": 2}, {"c": "Week", "t": "Week 12: Respiratory", "u": "#w12", "s": "Podcast, book, flipbook, flashcards and lessons", "k": "V/Q mismatch, COPD, asthma, infections, alveolar disease, PE, cor pulmonale, trauma & lung sounds.", "w": 2}, {"c": "Week", "t": "Week 13: Gastrointestinal", "u": "#w13", "s": "Podcast, book, flipbook, flashcards and lessons", "k": "GERD, ulcers, GI bleeds, malabsorption, IBD, bowel obstruction & the acute abdomen.", "w": 2}, {"c": "Week", "t": "Week 14: Liver & Biliary System", "u": "#w14", "s": "Podcast, book, flipbook, flashcards and lessons", "k": "Liver disease stages, bilirubin, gallstones, pancreatitis, and male & female reproductive disorders.", "w": 2}, {"c": "Exam", "t": "Exam 1 study guide", "u": "study-guides/BIO280_Exam1_Study_Guide.html", "s": "Modules 1 & 2", "k": "review study guide", "w": 2}, {"c": "Exam", "t": "Exam 1 in Exam Prep HQ", "u": "exam-suite/index.html?exam=1", "s": "Drill this exam", "k": "practice simulator", "w": 0}, {"c": "Exam", "t": "Exam 2 study guide", "u": "study-guides/BIO280_Exam2_Study_Guide.html", "s": "Modules 3 & 4", "k": "review study guide", "w": 2}, {"c": "Exam", "t": "Exam 2 in Exam Prep HQ", "u": "exam-suite/index.html?exam=2", "s": "Drill this exam", "k": "practice simulator", "w": 0}, {"c": "Exam", "t": "Exam 3 study guide", "u": "study-guides/BIO280_Exam3_Study_Guide.html", "s": "Modules 5 & 6", "k": "review study guide", "w": 2}, {"c": "Exam", "t": "Exam 3 in Exam Prep HQ", "u": "exam-suite/index.html?exam=3", "s": "Drill this exam", "k": "practice simulator", "w": 0}, {"c": "Exam", "t": "Exam 4 study guide", "u": "study-guides/BIO280_Exam4_Study_Guide.html", "s": "Modules 7 & 8", "k": "review study guide", "w": 2}, {"c": "Exam", "t": "Exam 4 in Exam Prep HQ", "u": "exam-suite/index.html?exam=4", "s": "Drill this exam", "k": "practice simulator", "w": 0}, {"c": "Exam", "t": "Exam 5 study guide", "u": "study-guides/BIO280_Exam5_Study_Guide.html", "s": "Modules 9 & 10", "k": "review study guide", "w": 2}, {"c": "Exam", "t": "Exam 5 in Exam Prep HQ", "u": "exam-suite/index.html?exam=5", "s": "Drill this exam", "k": "practice simulator", "w": 0}, {"c": "Exam", "t": "Exam 6 study guide", "u": "study-guides/BIO280_Exam6_Study_Guide.html", "s": "Modules 11 & 12", "k": "review study guide", "w": 2}, {"c": "Exam", "t": "Exam 6 in Exam Prep HQ", "u": "exam-suite/index.html?exam=6", "s": "Drill this exam", "k": "practice simulator", "w": 0}, {"c": "Exam", "t": "Final Exam study guide", "u": "study-guides/BIO280_Final_Exam_Study_Guide.html", "s": "All modules — weighted to 13 & 14", "k": "review study guide", "w": 2}, {"c": "Exam", "t": "Final Exam in Exam Prep HQ", "u": "exam-suite/index.html?exam=7", "s": "Drill this exam", "k": "practice simulator", "w": 0}, {"c": "Book", "t": "Foundations: The Cell, ABGs & Genetics", "u": "https://kashee12345.github.io/bio280-book/book/foundations.html", "s": "The Book: Cells & injury, fluids & acid-base, DNA & inheritance", "k": "chapter", "w": 0}, {"c": "Book", "t": "Immunity, Inflammation & Hypersensitivity", "u": "https://kashee12345.github.io/bio280-book/book/immunity.html", "s": "The Book: Defenses, antibodies, inflammation, allergy & autoimmunity", "k": "chapter", "w": 0}, {"c": "Book", "t": "Oncology: How Cancer Works", "u": "https://kashee12345.github.io/bio280-book/book/oncology.html", "s": "The Book: Cell injury, benign vs malignant, spread & staging", "k": "chapter", "w": 0}, {"c": "Book", "t": "Pain", "u": "https://kashee12345.github.io/bio280-book/book/pain.html", "s": "The Book: The pain pathway, types of pain, and how it is treated", "k": "chapter", "w": 0}, {"c": "Book", "t": "Neurology", "u": "https://kashee12345.github.io/bio280-book/book/neurology.html", "s": "The Book: Stroke, raised ICP, seizures & neurologic disorders", "k": "chapter", "w": 0}, {"c": "Book", "t": "The Endocrine System", "u": "https://kashee12345.github.io/bio280-book/book/endocrine.html", "s": "The Book: Feedback · adrenal · thyroid · diabetes · growth hormone · ADH", "k": "chapter", "w": 0}, {"c": "Book", "t": "Hematology: The Blood", "u": "https://kashee12345.github.io/bio280-book/book/hematology.html", "s": "The Book: Anemias, clotting, blood types & blood cancers", "k": "chapter", "w": 0}, {"c": "Book", "t": "Cardiovascular", "u": "https://kashee12345.github.io/bio280-book/book/cardiovascular.html", "s": "The Book: Coronary disease, heart failure, valves, EKG & blood pressure", "k": "chapter", "w": 0}, {"c": "Book", "t": "Pulmonary", "u": "https://kashee12345.github.io/bio280-book/book/pulmonary.html", "s": "The Book: V/Q, COPD, asthma, PE & lung sounds", "k": "chapter", "w": 0}, {"c": "Book", "t": "Renal & Urinary", "u": "https://kashee12345.github.io/bio280-book/book/renal.html", "s": "The Book: The nephron, AKI, CKD, stones & UTIs", "k": "chapter", "w": 0}, {"c": "Book", "t": "Reproductive", "u": "https://kashee12345.github.io/bio280-book/book/reproductive.html", "s": "The Book: Male & female reproductive disorders", "k": "chapter", "w": 0}, {"c": "Book", "t": "Digestive: GI, Liver & Pancreas", "u": "https://kashee12345.github.io/bio280-book/book/digestive.html", "s": "The Book: GERD, ulcers, IBD, obstruction, cirrhosis & gallstones", "k": "chapter", "w": 0}, {"c": "Book", "t": "Musculoskeletal & Integumentary", "u": "https://kashee12345.github.io/bio280-book/book/musculoskeletal.html", "s": "The Book: Fractures, MSK disorders, skin conditions & burns", "k": "chapter", "w": 0}, {"c": "Exam", "t": "ABG Trainer", "u": "exam-suite/abg.html", "s": "Exam Prep HQ", "k": "exam prep", "w": 0}, {"c": "Exam", "t": "Exam Simulator", "u": "exam-suite/simulator.html", "s": "Exam Prep HQ", "k": "exam prep", "w": 0}, {"c": "Exam", "t": "Lab Signatures drill", "u": "exam-suite/labs.html", "s": "Exam Prep HQ", "k": "exam prep", "w": 0}, {"c": "Exam", "t": "Red Flags drill", "u": "exam-suite/redflag.html", "s": "Exam Prep HQ", "k": "exam prep", "w": 0}, {"c": "Exam", "t": "Look-alike pairs drill", "u": "exam-suite/discriminator.html", "s": "Exam Prep HQ", "k": "exam prep", "w": 0}, {"c": "Exam", "t": "Mechanism Chains drill", "u": "exam-suite/chains.html", "s": "Exam Prep HQ", "k": "exam prep", "w": 0}, {"c": "Exam", "t": "Cram Sheet", "u": "exam-suite/cram.html", "s": "Exam Prep HQ", "k": "exam prep", "w": 0}];</script>
+<script>/* Course hub home page behavior: preview clips, rails, course search. Built by hubtools/build_hubs.py. */
+(function () {
+  "use strict";
+  var doc = document;
+
+  /* ---------- preview clips: play only while in view; posters only for reduced motion or slow / Save-Data ---------- */
+  var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  var slow = !!(conn && (conn.saveData || /(^|-)2g|3g/.test(conn.effectiveType || "")));
+  var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var vids = [].slice.call(doc.querySelectorAll("video[data-src]"));
+  function load(v) {
+    if (v.dataset.loaded) return;
+    v.dataset.loaded = "1";
+    /* WebM (smaller) where the browser plays VP9, otherwise the H.264 MP4 */
+    var wm = v.dataset.webm && v.canPlayType && v.canPlayType('video/webm; codecs="vp9"');
+    v.src = wm ? v.dataset.webm : v.dataset.src;
+    v.addEventListener("playing", function () { v.classList.add("on"); });
+  }
+  function play(v) {
+    load(v);
+    var p = v.play();
+    if (p && p.catch) p.catch(function () {});
+  }
+  if (!slow && !still && "IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting && e.intersectionRatio > 0.35) play(v);
+        else if (!v.paused) v.pause();
+      });
+    }, { threshold: [0, 0.35, 0.7] });
+    vids.forEach(function (v) { io.observe(v); });
+    doc.addEventListener("visibilitychange", function () {
+      if (doc.hidden) vids.forEach(function (v) { if (!v.paused) v.pause(); });
+    });
+  }
+
+  /* ---------- rails: previous / next buttons ---------- */
+  [].forEach.call(doc.querySelectorAll("[data-rail]"), function (box) {
+    var rail = doc.getElementById(box.getAttribute("data-rail"));
+    if (!rail) return;
+    [].forEach.call(box.querySelectorAll("button"), function (b) {
+      b.addEventListener("click", function () {
+        var card = rail.querySelector("li");
+        var step = card ? card.getBoundingClientRect().width + 16 : 280;
+        rail.scrollBy({ left: (b.getAttribute("data-dir") === "prev" ? -1 : 1) * step * 2, behavior: still ? "auto" : "smooth" });
+      });
+    });
+  });
+
+  /* ---------- course-only search over this hub's own pages, tools and topics ---------- */
+  var IDX = window.HUB_INDEX || [];
+  var input = doc.getElementById("hq"), box = doc.getElementById("hres"), form = doc.getElementById("hform");
+  if (input && box) {
+    var norm = function (s) { return String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9 ]+/g, " "); };
+    IDX.forEach(function (r) { r._t = norm(r.t + " " + (r.a || "")); r._h = norm([r.t, r.a, r.s, r.k].join(" ")); });
+    var sel = -1, shown = [];
+    var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+    var run = function () {
+      var q = norm(input.value).trim();
+      if (q.length < 2) { box.classList.remove("on"); input.setAttribute("aria-expanded", "false"); shown = []; return; }
+      var words = q.split(/\s+/);
+      var scored = [];
+      IDX.forEach(function (r) {
+        var sc = 0;
+        for (var i = 0; i < words.length; i++) {
+          var w = words[i];
+          if (r._h.indexOf(w) < 0) return;
+          sc += r._t.indexOf(w) === 0 ? 6 : (r._t.indexOf(" " + w) >= 0 ? 4 : (r._t.indexOf(w) >= 0 ? 3 : 1));
+        }
+        sc += (r.w || 0);
+        scored.push([sc, r]);
+      });
+      scored.sort(function (a, b) { return b[0] - a[0]; });
+      shown = scored.slice(0, 12).map(function (x) { return x[1]; });
+      sel = -1;
+      if (!shown.length) {
+        box.innerHTML = '<div class="none">Nothing in this course matches “' + esc(input.value) + '”. Try a body system or a disease name.</div>';
+      } else {
+        box.innerHTML = shown.map(function (r, i) {
+          return '<a role="option" id="hr' + i + '" href="' + esc(r.u) + '"' + (r.x ? ' target="_blank" rel="noopener"' : "") + '><span class="rk">' + esc(r.c) + '</span><span><span class="rtt">' + esc(r.t) + '</span>' + (r.s ? '<span class="rss">' + esc(r.s) + "</span>" : "") + "</span></a>";
+        }).join("");
+      }
+      box.classList.add("on");
+      input.setAttribute("aria-expanded", "true");
+    };
+    var mark = function () {
+      [].forEach.call(box.querySelectorAll("a"), function (a, i) { a.setAttribute("aria-selected", i === sel ? "true" : "false"); });
+      if (sel >= 0) { input.setAttribute("aria-activedescendant", "hr" + sel); var a = doc.getElementById("hr" + sel); if (a) a.scrollIntoView({ block: "nearest" }); }
+      else input.removeAttribute("aria-activedescendant");
+    };
+    input.addEventListener("input", run);
+    input.addEventListener("focus", function () { if (input.value.trim().length > 1) run(); });
+    input.addEventListener("keydown", function (e) {
+      if (!shown.length) return;
+      if (e.key === "ArrowDown") { sel = Math.min(sel + 1, shown.length - 1); mark(); e.preventDefault(); }
+      else if (e.key === "ArrowUp") { sel = Math.max(sel - 1, -1); mark(); e.preventDefault(); }
+      else if (e.key === "Escape") { box.classList.remove("on"); input.setAttribute("aria-expanded", "false"); }
+    });
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      run();
+      var r = shown[sel >= 0 ? sel : 0];
+      if (r) { if (r.x) window.open(r.u, "_blank", "noopener"); else location.href = r.u; }
+    });
+    doc.addEventListener("click", function (e) { if (!e.target.closest || !e.target.closest(".hsearch")) { box.classList.remove("on"); input.setAttribute("aria-expanded", "false"); } });
+    [].forEach.call(doc.querySelectorAll("[data-q]"), function (a) {
+      a.addEventListener("click", function (e) { e.preventDefault(); input.value = a.getAttribute("data-q"); input.focus(); run(); });
+    });
+  }
+})();
+</script>
+<script>
+/* ---------- WHAT'S NEW ----------
+   To add an update: copy one line to the TOP of this list. Newest first.
+   date is YYYY-MM-DD and is the only place the date is written. */
+const CHANGELOG=[
+ {date:"2026-08-01", title:"Final Exam Study Guide",
+  body:"A written review for the final covering all fourteen modules, with full deep dives on Modules 13 and 14 (the most heavily weighted) and a focused rapid review of Modules 1 through 12. Thirty topics, 102 practice questions with rationales, and a matching PDF."},
+ {date:"2026-08-01", title:"Exam Prep HQ — a full suite of exam tools",
+  body:"Seven tools covering all six unit exams and the cumulative final, drawing on 755 questions from the course bank: a timed and scored Exam Simulator, an ABG Trainer that generates a fresh blood gas every time, and drills for lab signatures, easily-confused look-alike pairs, act-now red flags, and mechanism chains, plus a printable cram sheet. A readiness dashboard tracks your accuracy exam by exam and names the one to study first."},
+ {date:"2026-08-01", title:"The course hub",
+  body:"Everything for BIO 280 gathered onto one page — podcasts, interactive books, flipbooks, and Quizlet decks for all fourteen weeks, plus a By Exam section with the KCR reviews, PathoParty question sets, and the six exam study guides."},
+ {date:"2026-08-01", title:"Exam study guides published",
+  body:"All six exam study guides are now on the site to read or download, each with a print-to-PDF button that expands every section first."},
+ {date:"2026-07-14", title:"The Pathophysiology Book",
+  body:"A full interactive pathophysiology textbook for the course — chapters with figures, comparison tables, clinical pearls, glossaries, quizzes, and the interactive labs embedded in context."},
+ {date:"2026-07-13", title:"The Interactive Body",
+  body:"Ninety hands-on animated pathophysiology lessons — click, drag, and toggle to watch each mechanism unfold, plus live ABG and Punnett-square calculators."}
+];
+
+const SPOT="https://open.spotify.com/episode/";
+const H5P="https://akashgarg.h5p.com/content/";
+const FLIP="https://online.fliphtml5.com/okqmf/";
+const QZ="https://quizlet.com/";
+const GD="https://docs.google.com/document/d/";
+const GS="https://docs.google.com/presentation/d/";
+const SG="study-guides/";
+
+/* ---------- WEEKS ---------- */
+const WEEKS=[
+ {n:"1",topic:"Acids & Bases · Fluids & Electrolytes",
+  pod:SPOT+"0V3hCI1H6rsZIj2cgz7kyq", book:H5P+"1292683032259962308", flip:FLIP+"rjlz/",
+  cards:[["Acids and Bases",QZ+"722988532/bio280-week-1-acids-and-bases-flash-cards/"],
+         ["Fluids and Electrolytes",QZ+"720565172/bio280-week-1-fluids-and-electrolytes-flash-cards/"]]},
+ {n:"2",topic:"Pathogens & Immunity",
+  pod:SPOT+"2icFITlZCwRHXXNQrmwJui", book:H5P+"1292689058699295798", flip:FLIP+"vcoy/",
+  cards:[["Pathogens and Immunity",QZ+"805825565/bio280-week-2-pathogens-and-immunity-flash-cards/"]]},
+ {n:"3",topic:"Cancer & Cellular Injury",
+  pod:SPOT+"2pqgdVN7FZ4AeT7DbfhMJm", book:H5P+"1292696669146022408", flip:FLIP+"bcpy/",
+  cards:[["Cancer and Cellular Injury",QZ+"809022564/bio280-week-3-cancer-and-cellular-injury-flash-cards/"]]},
+ {n:"4",topic:"Inflammation & Inflammatory Disorders",
+  pod:SPOT+"1QWFSlNvY1qKvyOqJ8XHkp", book:H5P+"1292702544320622858", flip:FLIP+"ssxt/",
+  cards:[["Inflammation and Inflammatory Disorders",QZ+"809028635/bio280-week-4-inflammation-and-inflammatory-disorders-flash-cards/"]]},
+ {n:"5",topic:"Neurology & Mental Health",
+  pod:SPOT+"3N9aMtlsEzK0NYn3abBOn9", book:H5P+"1292703778300112988", flip:FLIP+"huzk/",
+  cards:[["Neurology and Mental Health",QZ+"809025253/bio280-week-5-neurology-and-mental-health-flash-cards/"]]},
+ {n:"6",topic:"Musculoskeletal & Skin Disorders",
+  pod:SPOT+"5mxQig36XmmnL91eAXdkQY", book:H5P+"1292703777475130408", flip:null,
+  cards:[["MSK and Skin Disorders",QZ+"810555283/bio280-week-6-msk-and-skin-disorders-flash-cards/"]]},
+ {n:"7",topic:"Genetics",
+  pod:SPOT+"1dcafwdFiXe49gpl2487sg", book:H5P+"1292616155539606148", flip:null,
+  cards:[["Genetics",QZ+"810558931/bio280-week-7-genetics-flash-cards/"]]},
+ {n:"8",topic:"Endocrine",
+  pod:SPOT+"3aHbGUXHXRE4RFRUiRJ6R3", book:H5P+"1292621308910533948", flip:null,
+  cards:[["Endocrine",QZ+"810571020/bio280-week-8-endocrine-flash-cards/"]]},
+ {n:"9",topic:"Blood Disorders & Cardiovascular I",
+  pod:SPOT+"66PJ8v1bFbBHjxkI04L6gR", book:H5P+"1292632741092578738", flip:null,
+  cards:[["Blood Disorders and Cardiovascular I",QZ+"809328682/bio280-week-9-blood-disorders-and-cardiovascular-part-1-flash-cards/"]]},
+ {n:"10",topic:"Cardiovascular II",
+  pod:SPOT+"5vyRcEvbau5kgIpKsGpCv8", book:H5P+"1292632745115699798", flip:null,
+  cards:[["Cardiovascular II",QZ+"809330515/bio280-week-10-cardiovascular-part-ii-flash-cards/"]]},
+ {n:"11",topic:"Renal Disorders",
+  pod:SPOT+"41pURpzXYOUniMvxcYloLD", book:H5P+"1292640299908852978", flip:null,
+  cards:[["Renal Disorders",QZ+"810563662/bio280-week-11-renal-disorders-flash-cards/"]]},
+ {n:"12",topic:"Respiratory",
+  pod:SPOT+"1M45qLMvqdICWrfcl8wocZ", book:H5P+"1292646402952640518", flip:null,
+  cards:[["Respiratory",QZ+"809361075/bio280-week-12-respiratory-flash-cards/"]]},
+ {n:"13",topic:"Gastrointestinal",
+  pod:null, book:H5P+"1292654149908766098", bookNote:"Weeks 13 & 14", flip:null,
+  cards:[["GI",QZ+"809366329/bio280-week-13-gi-flash-cards/"]]},
+ {n:"14",topic:"Liver & Biliary System",
+  pod:null, book:H5P+"1292654149908766098", bookNote:"Weeks 13 & 14", flip:null,
+  cards:[["Liver and Biliary System",QZ+"747042772/bio280-week-14-liver-and-biliary-system-flash-cards/"]]}
+];
+
+/* ---------- EXAMS ---------- */
+const EXAMS=[
+ {n:"Exam 1", mods:"Modules 1 & 2", kcr:GD+"1guUcnaZcY2mYgwf8hJXmlMtA21wUJy7d/preview", pp:GS+"1vSiVn8bu9qLktkRWw_wM36YZzIaS9QYh/preview", guide:"BIO280_Exam1_Study_Guide"},
+ {n:"Exam 2", mods:"Modules 3 & 4", kcr:GD+"1YSierw9RHFrVLZ6wdfIer7TDerN4iKB1/preview", pp:GS+"1moc15GDSS8N0Q3mF2_dj4XAgBNWWsNgC/preview", guide:"BIO280_Exam2_Study_Guide"},
+ {n:"Exam 3", mods:"Modules 5 & 6", kcr:GD+"1f59hHzQbvckNuSgE5NqIS6hYZcWTFCDU/preview", pp:GS+"1woA1PZvtzppA7RjP5TuSJ4LBp4Gwm3aH/preview", guide:"BIO280_Exam3_Study_Guide"},
+ {n:"Exam 4", mods:"Modules 7 & 8", kcr:GD+"1No5Rxr46M0uqh9SDEBcMCgJUmX5dCHOI/preview", pp:GS+"1tFqyIDIn3Xez9yOJXZi3i5znez-2OxZI/preview", guide:"BIO280_Exam4_Study_Guide"},
+ {n:"Exam 5", mods:"Modules 9 & 10", kcr:GD+"1R4q7x2SzIDzBCwrcu3yAWOFmk2hag1Yu/preview", pp:GS+"1eE04yksQ3SSGlw5tQ69l4f3nMnQotsuR/preview", guide:"BIO280_Exam5_Study_Guide"},
+ {n:"Exam 6", mods:"Modules 11 & 12", kcr:GD+"1H_c6Rp4PnzCuYQCG5qLS8X8RRnYPQAaS/preview", pp:GS+"1oOUaQKI88v6IQc-dpi4ZeKCgWqXW-tvJ/preview", guide:"BIO280_Exam6_Study_Guide"},
+ {n:"Final Exam", fin:true, mods:"All modules — weighted to 13 & 14", kcr:GD+"1Tra-d0mAvCknKwfy7nxAz_rHBE01ucfa/preview", pp:null, guide:"BIO280_Final_Exam_Study_Guide",
+  pod:SPOT+"0TAsqpqRVeedLGqjbzygvq"}
+];
+
+/* ---------- WEEK PATH AND EXAM CARDS (new home page) ----------
+   Reads the WEEKS and EXAMS lists above. LESSON_WEEKS is the week-to-lesson mapping from weeks.html;
+   BOOKMAP points each week at the matching chapter of the book (matched by topic). */
+const LESSON_WEEKS={"1": [["FluidCompartments.html", "Fluid Compartments"], ["Edema.html", "Edema — Hydrostatic vs Oncotic"], ["FluidHormones.html", "Fluid Regulation Hormones"], ["Electrolytes.html", "Electrolytes"], ["BufferSystems.html", "Buffer Systems"], ["ABGInterpreter.html", "ABG Interpreter"]], "2": [["PathogenTypes.html", "Pathogen Types"], ["ViralReplication.html", "Viral Replication"], ["ImmuneDefense.html", "Three Lines of Defense"], ["Immunoglobulins.html", "Immunoglobulins (GAMED)"], ["Hypersensitivity.html", "Hypersensitivity Reactions"], ["BloodCancers.html", "Blood Cancers"]], "3": [["CellularAdaptation.html", "Cellular Adaptation"], ["Cancer.html", "Cancer"], ["Inflammation.html", "Inflammation"]], "4": [["Sepsis.html", "SIRS → Septic Shock"], ["WoundHealing.html", "Wound Healing"], ["PainPathway.html", "The Pain Pathway"], ["AutoimmuneInflammatory.html", "Autoimmune & Inflammatory"], ["Neurodegenerative.html", "Neurodegenerative Diseases"], ["NeuromuscularJunction.html", "Neuromuscular Junction"]], "5": [["MentalHealth.html", "Mental Health Disorders"], ["IntracranialPressure.html", "Intracranial Pressure"], ["Stroke.html", "Stroke (CVA)"], ["HeadTrauma.html", "Head Trauma & Brain Bleeds"], ["SpinalCord.html", "Spinal Cord Injury"], ["CNSInfections.html", "Other Neuro Disorders"]], "6": [["FractureCare.html", "Fractures & the 5 P's"], ["FractureComplications.html", "Fracture Complications"], ["MSKDisorders.html", "Musculoskeletal Disorders"], ["SkinInfections.html", "Skin Infections"], ["SkinConditions.html", "Skin Conditions"], ["Burns.html", "Burns"]], "7": [["DNAtoChromosome.html", "DNA → Chromosome"], ["MitosisMeiosis.html", "Mitosis vs Meiosis"], ["ChromosomalDisorders.html", "Chromosomal Disorders"], ["InheritancePatterns.html", "Inheritance Patterns"], ["PunnettSquare.html", "Punnett Square Calculator"], ["Teratogens.html", "Teratogens & Concepts"]], "8": [["EndocrinePituitary.html", "Endocrine Command Center"], ["AdrenalDisorders.html", "Adrenal Disorders"], ["ThyroidDisorders.html", "Thyroid Disorders"], ["Diabetes.html", "Diabetes Mellitus"], ["GrowthHormone.html", "Growth Hormone Disorders"], ["ADHDisorders.html", "ADH Disorders (SIADH/DI)"]], "9": [["AnemiaExplorer.html", "Anemia Explorer"], ["EKGReader.html", "EKG Reader"], ["BleedingClotting.html", "Bleeding & Clotting"], ["BloodTypes.html", "Blood Types & Transfusion"], ["BloodPressure.html", "Blood Pressure & Cardiac Output"], ["PeripheralVascular.html", "Peripheral Vascular Disease"]], "10": [["CoronaryQuest3D.html", "Coronary Artery Disease (3D)"], ["HeartFailure.html", "Heart Failure"], ["ValveDisorders.html", "Heart Valve Disorders"], ["CongenitalShunts.html", "Congenital Heart Defects"], ["CardiacTamponade.html", "Cardiac Tamponade"], ["HeartInfections.html", "Heart Infection & Inflammation"]], "11": [["NephronExplorer.html", "Nephron Explorer"], ["NephroticNephritic.html", "Nephrotic vs Nephritic"], ["AKILocalizer.html", "Acute Kidney Injury"], ["CKD.html", "Chronic Kidney Disease"], ["KidneyStones.html", "Kidney Stones & Obstruction"], ["UrinaryIncontinence.html", "Urinary Incontinence"], ["UTI.html", "Urinary Tract Infection"]], "12": [["RespirationVQ.html", "Ventilation, Perfusion & V/Q"], ["COPD.html", "COPD"], ["Asthma.html", "Asthma"], ["AirwayInfections.html", "Airway Infections Map"], ["AlveoliAttack.html", "Alveoli Under Attack"], ["PulmonaryEmbolism.html", "Pulmonary Embolism"], ["RightHeartChain.html", "Road to Right Heart Failure"], ["ChestTrauma.html", "Chest Trauma"], ["LungSounds.html", "Lung Sounds"]], "13": [["GERD.html", "GERD & the Esophagus"], ["PepticUlcer.html", "Peptic Ulcers & Gastritis"], ["GIBleed.html", "GI Bleed Localizer"], ["Malabsorption.html", "Malabsorption"], ["IBD.html", "Crohn's vs Ulcerative Colitis"], ["BowelObstruction.html", "Bowel Obstruction"], ["AcuteAbdomen.html", "Acute Abdomen"]], "14": [["LiverStages.html", "Stages of Liver Disease"], ["Bilirubin.html", "Bilirubin & Liver Signs"], ["Gallstones.html", "Gallstones & the Biliary Tree"], ["Pancreatitis.html", "Pancreatitis"], ["MaleRepro.html", "Male Reproductive Disorders"], ["FemaleRepro.html", "Female Reproductive Disorders"]]};
+const BOOKMAP={"1": [["https://kashee12345.github.io/bio280-book/book/foundations.html", "Foundations: The Cell, ABGs & Genetics"]], "2": [["https://kashee12345.github.io/bio280-book/book/immunity.html", "Immunity, Inflammation & Hypersensitivity"]], "3": [["https://kashee12345.github.io/bio280-book/book/oncology.html", "Oncology: How Cancer Works"]], "4": [["https://kashee12345.github.io/bio280-book/book/pain.html", "Pain"]], "5": [["https://kashee12345.github.io/bio280-book/book/neurology.html", "Neurology"]], "6": [["https://kashee12345.github.io/bio280-book/book/musculoskeletal.html", "Musculoskeletal & Integumentary"]], "7": [["https://kashee12345.github.io/bio280-book/book/foundations.html", "Foundations: The Cell, ABGs & Genetics"]], "8": [["https://kashee12345.github.io/bio280-book/book/endocrine.html", "The Endocrine System"]], "9": [["https://kashee12345.github.io/bio280-book/book/hematology.html", "Hematology: The Blood"], ["https://kashee12345.github.io/bio280-book/book/cardiovascular.html", "Cardiovascular"]], "10": [["https://kashee12345.github.io/bio280-book/book/cardiovascular.html", "Cardiovascular"]], "11": [["https://kashee12345.github.io/bio280-book/book/renal.html", "Renal & Urinary"]], "12": [["https://kashee12345.github.io/bio280-book/book/pulmonary.html", "Pulmonary"]], "13": [["https://kashee12345.github.io/bio280-book/book/digestive.html", "Digestive: GI, Liver & Pancreas"]], "14": [["https://kashee12345.github.io/bio280-book/book/digestive.html", "Digestive: GI, Liver & Pancreas"], ["https://kashee12345.github.io/bio280-book/book/reproductive.html", "Reproductive"]]};
+const CHASE="https://kashee12345.github.io/bio280-book/games/the-chase.html";
+/* Fall 2026: weeks run Monday to Sunday from Aug 31. Week 15 is the final. */
+const TERM_START=new Date(2026,7,31);
+const ICON={"headphones": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 15v-3a8 8 0 0 1 16 0v3\"/><rect x=\"3\" y=\"14\" width=\"4\" height=\"7\" rx=\"1.5\"/><rect x=\"17\" y=\"14\" width=\"4\" height=\"7\" rx=\"1.5\"/></svg>", "book": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z\"/><path d=\"M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5\"/></svg>", "flip": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 4v16\"/><path d=\"M12 4C9 3 6 3 3 4v15c3-1 6-1 9 0\"/><path d=\"M12 4c3-1 6-1 9 0v15c-3-1-6-1-9 0\"/></svg>", "cards": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"6\" width=\"13\" height=\"15\" rx=\"2\"/><path d=\"M8 3h11a2 2 0 0 1 2 2v13\"/></svg>", "lesson": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 6l9-4 9 4-9 4z\"/><path d=\"M7 8.5V14c0 1.7 2.2 3 5 3s5-1.3 5-3V8.5\"/></svg>", "run": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"14\" cy=\"4\" r=\"2\"/><path d=\"m6 21 3-6 3 2 1 4M9 15l1-5 4 2 3-2M10 10 7 9l-3 3\"/></svg>", "grad": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m2 9 10-5 10 5-10 5z\"/><path d=\"M6 11v5c3 2 9 2 12 0v-5\"/><path d=\"M22 9v6\"/></svg>", "doc": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z\"/><path d=\"M14 3v6h6\"/><path d=\"M8 13h8M8 17h5\"/></svg>", "party": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 20 9 6l9 9z\"/><path d=\"M14 3c0 2 1 3 3 3M19 9c1 0 2 .5 2 2M12 2v2\"/></svg>", "pdf": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z\"/><path d=\"M14 3v6h6\"/><path d=\"M12 12v6m-3-3 3 3 3-3\"/></svg>", "ext": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 4h6v6\"/><path d=\"M20 4 10 14\"/><path d=\"M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5\"/></svg>"};
+(function(){
+  function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+  function tile(href,ic,t,s,cls,ext){return '<li><a class="rt '+(cls||'')+'" href="'+esc(href)+'"'+(ext?' target="_blank" rel="noopener"':'')+'><span class="ic">'+ICON[ic]+'</span><b>'+esc(t)+'</b>'+(s?'<small>'+esc(s)+'</small>':'')+(ext?'<span class="ext">Opens in a new tab</span>':'')+'</a></li>';}
+  function examFor(n){return n<=12?Math.ceil(n/2):7;}
+  var now=new Date(), wk=Math.floor((now-TERM_START)/6048e5)+1, thisWeek=(wk>=1&&wk<=14)?wk:null, label="";
+  if(thisWeek){var ws=new Date(TERM_START.getTime()+(wk-1)*6048e5),we=new Date(ws.getTime()+6*864e5),f=function(d){return d.toLocaleDateString("en-US",{month:"short",day:"numeric"});};label=f(ws)+" to "+f(we);}
+  function panel(w){
+    var n=+w.n, row="";
+    if(w.pod) row+=tile(w.pod,"headphones","Podcast","Listen on Spotify","",true);
+    if(w.book) row+=tile(w.book,"book","Interactive Book",w.bookNote||"On H5P","teal",true);
+    if(w.flip) row+=tile(w.flip,"flip","Flipbook","Illustrated","gold",true);
+    (w.cards||[]).forEach(function(c){row+=tile(c[1],"cards","Flashcards",c[0]+" on Quizlet","",true);});
+    (BOOKMAP[n]||[]).forEach(function(b){row+=tile(b[0],"book","Book chapter",b[1],"teal");});
+    var ex=examFor(n);
+    row+=tile(CHASE+"?wk="+ex,"run","Chase round",ex===7?"Final exam round":"Exam "+ex+" round","gold");
+    row+=tile("exam-suite/index.html?exam="+ex,"grad","Exam Prep HQ",ex===7?"Drill the final":"Drill Exam "+ex,"ok");
+    var L=LESSON_WEEKS[n]||[];
+    var les=L.length?'<p class="sub-h">Interactive lessons this week</p><div class="lessons">'+L.map(function(l){return '<a href="'+esc(l[0])+'">'+esc(l[1])+'</a>';}).join("")+'</div>':'';
+    var count=(w.pod?1:0)+(w.book?1:0)+(w.flip?1:0)+(w.cards?w.cards.length:0);
+    return '<div class="ptop"><div><h3 id="w'+n+'">Week '+n+' · '+esc(w.topic)+'</h3><div class="pmeta"><span class="pill ex">'+(ex===7?'Final Exam':'Exam '+ex)+'</span><span class="pill">'+count+' item'+(count===1?'':'s')+' this week</span><span class="pill">'+L.length+' interactive lessons</span>'+(n===thisWeek?'<span class="pill now">This week · '+esc(label)+'</span>':'')+'</div></div></div>'+
+      '<ul class="res-row" aria-label="Week '+n+' resources">'+row+'</ul>'+les;
+  }
+  var chips=document.getElementById("chips"), box=document.getElementById("wpanel");
+  chips.innerHTML=WEEKS.map(function(w){var n=+w.n;return '<button class="chip" type="button" data-n="'+n+'" aria-pressed="false" aria-label="Week '+n+': '+esc(w.topic)+(n===thisWeek?' (this week)':'')+'"><small>'+(n===thisWeek?'Now':'Week')+'</small><span>'+n+'</span>'+(n===thisWeek?'<i class="nowdot" aria-hidden="true"></i>':'')+'</button>';}).join("");
+  function show(n){
+    var w=null; WEEKS.forEach(function(x){if(+x.n===n) w=x;}); if(!w) return;
+    [].forEach.call(chips.querySelectorAll(".chip"),function(c){c.setAttribute("aria-pressed",+c.getAttribute("data-n")===n?"true":"false");});
+    box.innerHTML=panel(w);
+    var c=chips.querySelector('[data-n="'+n+'"]'); if(c){var r=c.getBoundingClientRect(),pr=chips.getBoundingClientRect(); if(r.left<pr.left||r.right>pr.right) chips.scrollLeft+=r.left-pr.left-12;}
+  }
+  chips.addEventListener("click",function(e){var c=e.target.closest?e.target.closest(".chip"):null; if(c) show(+c.getAttribute("data-n"));});
+  var hm=/^#w(\d+)$/.exec(location.hash); show(hm?+hm[1]:(thisWeek||1));
+  window.addEventListener("hashchange",function(){var h=/^#w(\d+)$/.exec(location.hash); if(h){show(+h[1]); document.getElementById("path").scrollIntoView();}});
+  /* every week's links in one list, so nothing is more than one tap away */
+  document.getElementById("allweeks").innerHTML=WEEKS.map(function(w){
+    var n=+w.n, L=[];
+    if(w.pod) L.push('<a href="'+esc(w.pod)+'" target="_blank" rel="noopener">Podcast</a>');
+    if(w.book) L.push('<a href="'+esc(w.book)+'" target="_blank" rel="noopener">Interactive Book'+(w.bookNote?' ('+esc(w.bookNote)+')':'')+'</a>');
+    if(w.flip) L.push('<a href="'+esc(w.flip)+'" target="_blank" rel="noopener">Flipbook</a>');
+    (w.cards||[]).forEach(function(c){L.push('<a href="'+esc(c[1])+'" target="_blank" rel="noopener">Flashcards: '+esc(c[0])+'</a>');});
+    return '<div class="wk-item"><h4><span>Week '+n+'</span>'+esc(w.topic)+'</h4><div class="links">'+(L.join("")||'<span>Resources coming soon.</span>')+'</div></div>';
+  }).join("");
+  /* exam cards */
+  document.getElementById("examcards").innerHTML=EXAMS.map(function(e){
+    var num=e.fin?7:+e.n.replace("Exam ",""), L="";
+    if(e.kcr) L+='<a href="'+esc(e.kcr)+'" target="_blank" rel="noopener">'+ICON.doc+'KCR Review</a>';
+    if(e.pp) L+='<a href="'+esc(e.pp)+'" target="_blank" rel="noopener">'+ICON.party+'PathoParty</a>';
+    if(e.guide) L+='<a href="'+SG+e.guide+'.html">'+ICON.book+'Study guide</a><a href="'+SG+e.guide+'.pdf">'+ICON.pdf+'PDF</a>';
+    if(e.pod) L+='<a href="'+esc(e.pod)+'" target="_blank" rel="noopener">'+ICON.headphones+'Podcast</a>';
+    L+='<a href="exam-suite/index.html?exam='+num+'">'+ICON.grad+'Drill this exam</a>';
+    L+='<a class="chase" href="'+CHASE+'?wk='+num+'">'+ICON.run+'Chase round</a>';
+    return '<article class="excard'+(e.fin?' final':'')+'"><div class="exhead"><h3>'+esc(e.n)+'</h3></div><p class="covers">'+esc(e.mods)+'</p><div class="exlinks">'+L+'</div></article>';
+  }).join("");
+})();
+
+/* ---------- RENDER WHAT'S NEW ---------- */
+(function(){
+  var body=document.getElementById('wnBody'), latest=document.getElementById('wnLatest');
+  if(!body||!Array.isArray(CHANGELOG)) return;
+  function fmt(d){var p=d.split('-').map(Number);
+    return new Date(p[0],p[1]-1,p[2]).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
+  body.innerHTML='<p class="wn-intro">Newest first. Course resources are added week by week as the term runs.</p>'+
+    CHANGELOG.map(function(c,i){
+      return '<div class="wn-item"><div class="wn-date">'+fmt(c.date)+'</div>'+
+        '<div class="wn-txt"><h4>'+c.title+(i===0?'<span class="wn-tag">New</span>':'')+'</h4>'+
+        '<p>'+c.body+'</p></div></div>';
+    }).join('');
+  if(latest&&CHANGELOG.length) latest.textContent='· last updated '+fmt(CHANGELOG[0].date);
+})();
+</script>
+</body>
+</html>
